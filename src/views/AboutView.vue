@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h3>This page is still in progress. Go to pauseai-us.org to see our national organization website.</h3>
+    <h3>This page is still in progress. Go to <a href="https://pauseai-us.org" target="_blank" rel="noopener noreferrer">pauseai-us.org</a> to see our national organization website.</h3>
     <img src="@/assets/nerd.gif"/>
   </div>
 </template>
