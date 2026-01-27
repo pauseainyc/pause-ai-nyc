@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h3>This is an about page.</h3>
+    <h3>This page is still in progress. Go to pauseai-us.org to see our national organization website.</h3>
     <img src="@/assets/nerd.gif"/>
   </div>
 </template>
