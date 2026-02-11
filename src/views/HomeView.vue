@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="content-box">
-      <h1>PauseAI US</h1>
+      <h1>PauseAI NYC</h1>
 
       <p class="proposal">
         <strong>Our proposal is simple:</strong><br>
@@ -39,6 +39,7 @@ h1 {
   font-weight: bold;
   color: #2c3e50;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .proposal {
