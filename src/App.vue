@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="title">
       <img alt="Pause AI NYC logo" class="logo" src="@/assets/logo.png" width="64" height="64"/>
       <div class="greetings">
-        <h1 class="orange">Pause AI NYC</h1>
+        <h1 class="orange">PauseAI NYC</h1>
       </div>
     </div>
     <nav>
