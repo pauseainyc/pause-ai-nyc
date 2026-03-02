@@ -1,4 +1,9 @@
-import './assets/main.css'
+import './assets/main.scss'
+
+// pre-import all images to use dynamic image references (see social media icons)
+import.meta.glob('/src/assets/images/*.{png,jpg,jpeg,svg,webp}', {
+  eager: true,
+});
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
