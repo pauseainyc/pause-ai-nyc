@@ -10,7 +10,7 @@
     <div id="social-media-icons">
       <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
         <svg>
-          <use :href="`/src/assets/socialMediaIcons/${icon.svg}`"></use>
+          <use :href="`/socialMediaIcons/${icon.svg}`"></use>
         </svg>
       </a>
     </div>
