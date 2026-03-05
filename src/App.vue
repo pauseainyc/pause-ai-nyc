@@ -16,8 +16,7 @@
     </div>
     <nav id="header-nav">
       <RouterLink class="header-nav-link" to="/">Home</RouterLink>
-      <div class="separator"></div>
-      <a class="header-nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfatJka_oNOHB9t55OkhVKOYmqUAnqEqPdqBj9V6lrkTkZ2_g/viewform">Join Us!</a>
+      <!-- <div class="separator"></div> -->
     </nav>
   </header>
   <div id="router-view-container">
