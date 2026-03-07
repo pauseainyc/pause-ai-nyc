@@ -3,6 +3,7 @@
     <div class="about-section">
       <div class="about-section-heading">About Us</div>
       <div class="content-box">
+        <p>Welcome to our site! We are so excited for you to be here, we have so much to tell you about!</p>
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC chapter unique. Use <p> tags for paragraphs. -->
