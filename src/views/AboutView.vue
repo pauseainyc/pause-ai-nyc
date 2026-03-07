@@ -4,7 +4,9 @@
       <div class="about-section-heading">About Us</div>
       <div class="content-text">
         <p>Welcome to our site! We are so excited for you to be here, we have so much to tell you about!</p>
-        <p>While the <a href="https://pauseai.info/about">international PauseAI organization started in the Netherlands in May 2023</a>, our NYC-specific group started around Summer of 2025. There was another iteration of the NYC group prior to the current leadership team, but the old group dissolved when the primary lead had to move away frohrefm the city.</p>
+        <p>While the <a href="https://pauseai.info/about">international PauseAI organization started in the Netherlands in May 2023</a>, our NYC-specific group started around Summer of 2025. There was another iteration of the NYC group in 2024 (prior to the current leadership team), but the old group dissolved when the primary lead had to move away from the city.</p>
+        <p>So who are we? We are NYC residents, inhabitants, and folks from the surrounding area who all share a concern about AI safety, and <u>are willing to do something about it</u>. Our leaders and members come from a variety of backgrounds including (but not limited to) software engineering, teachering, web development, political organizing, AI research, art, film and more! There is no pre-requisite to join! </p>
+        <p></p>
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC chapter unique. Use <p> tags for paragraphs. -->
