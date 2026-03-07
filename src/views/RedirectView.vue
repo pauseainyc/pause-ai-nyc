@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSfatJka_oNOHB9t55OkhVKOYmqUAnqEqPdqBj9V6lrkTkZ2_g/viewform'
+window.location.href = 'https://pauseai.nyc'
 </script>
 
 <style scoped>
