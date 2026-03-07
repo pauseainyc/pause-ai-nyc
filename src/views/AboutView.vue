@@ -2,8 +2,9 @@
   <div id="about">
     <div class="about-section">
       <div class="about-section-heading">About Us</div>
-      <div class="content-box">
+      <div class="content-text">
         <p>Welcome to our site! We are so excited for you to be here, we have so much to tell you about!</p>
+        <p>While the <a href="https://pauseai.info/about">international PauseAI organization started in the Netherlands in May 2023</a>, our NYC-specific group started around Summer of 2025. There was another iteration of the NYC group prior to the current leadership team, but the old group dissolved when the primary lead had to move away frohrefm the city.</p>
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC chapter unique. Use <p> tags for paragraphs. -->
@@ -32,6 +33,19 @@
   .about-section-heading {
     font-size: 24px;
   }
+}
+
+.content-text {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 0px solid #ddd;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+}
+p {
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 1em;
 }
 
 .content-box {
