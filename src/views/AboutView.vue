@@ -17,7 +17,19 @@
         <img src="@/assets/pai-interview-2026-02-16-165820.jpeg" alt="Pause AI NYC interview" style="width: 100%; border-radius: 8px;" />
         <p>Washington Square Park is so beautiful this time of year.</p>
         <img src="@/assets/washington-square-2026-02-16-152013.jpeg" alt="Washington Square Park" style="width: 100%; border-radius: 8px;" />
-        <p>But don't worry the weather is getting warmer and we are going to be out <u>every week</u>!</p>
+        <p>But don't worry the weather is getting warmer and we are going to be out <u>every week</u>, and I wanna see <u><i>you</i></u> there!</p>
+      </div>
+      <div class="about-section-heading">Additional Fun Photos</div>
+      <div class="content-text">
+        <p>Here is us getting pizza:</p>
+        <img src="@/assets/pizza-2.jpg" alt="pizza pic" style="width: 100%; border-radius: 8px;" />
+        <p>Here is a picture from our last general meeting in February (please ignore the Halloween decorations, they give us a spooky vibe and we didnt just totally forget to take them down):</p>
+        <img src="@/assets/pai-general-feb.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
+
+        <p>Here another amazin' photo of us eating pizza. We just do this sometimes for fun or if we are hungry. Not an official club event, but you know what they say; "It's Pizza!":</p>
+        <img src="@/assets/pizza-2026-02-07-195351.jpeg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
+        <p>Finally I will leave you with the most beautiful creature that I know. The cat named Sunny <3<3<3 </p>
+        <img src="@/assets/sunny-pic.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC chapter unique. Use <p> tags for paragraphs. -->
