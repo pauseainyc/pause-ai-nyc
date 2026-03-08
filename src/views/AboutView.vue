@@ -11,7 +11,13 @@
       <div class="about-section-heading">What We Do</div>
       <div class="content-text">
         <p>We discuss and advocate for AI safety at multiple levels. We have group discussions at our general meetings, we call our representatives, and we canvass on the streets of NYC! We advocate for a global treaty on AI development, along with domestic state and federal-level funding. We actually got a win recently at the NY state level with the recent passage of the <a href="https://www.nysenate.gov/legislation/bills/2025/A6453/amendment/A">RAISE Act</a>. This bill (while weaker than we would have hoped) serves as a huge milestone for AI regulation in the USA, being only the second bill of its kind nationwide (the other one being the <a href="https://legiscan.com/CA/text/SB53/id/3041703">California bill SB 53</a>). Our NYC group made hundreds of phone calls to move the needle and make that possible. If you want to make <i>real</i> change on this issue, we are the group to join.</p>
-        <p></p>
+        <p>We meet in real life!! Here is a photo from our last general meeting:</p>
+        <img src="@/assets/pai-general-2026-03-07-172157.jpeg" alt="Pause AI NYC group photo" style="width: 100%; border-radius: 8px;" />
+        <p>But we also do other things like canvassing and interviewing people in parks across the city! Look out for our upcoming street interviews on our social media :) here is a pic from our last interview shoot:</p>
+        <img src="@/assets/pai-interview-2026-02-16-165820.jpeg" alt="Pause AI NYC interview" style="width: 100%; border-radius: 8px;" />
+        <p>Washington Square Park is so beautiful this time of year.</p>
+        <img src="@/assets/washington-square-2026-02-16-152013.jpeg" alt="Washington Square Park" style="width: 100%; border-radius: 8px;" />
+        <p>But don't worry the weather is getting warmer and we are going to be out <u>every week</u>!</p>
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC chapter unique. Use <p> tags for paragraphs. -->
