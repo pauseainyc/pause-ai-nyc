@@ -15,6 +15,11 @@ const router = createRouter({
       name: 'redirect',
       component: RedirectView,
     },
+    {
+      path: '/game',
+      name: 'game',
+      component: () => import('../views/GameView.vue'),
+    },
   ],
 })
 
