@@ -12,24 +12,24 @@
       <div class="content-text">
         <p>We discuss and advocate for AI safety at multiple levels. We have group discussions at our general meetings, call our representatives, and canvas on the streets of NYC! We advocate for a global treaty on AI development, along with domestic state and federal-level legislation that promotes safety in the AI industry. We actually got a win recently at the NY state level with the recent passage of the <a href="https://www.nysenate.gov/legislation/bills/2025/A6453/amendment/A">RAISE Act</a> (this bill was sponsored by <a href="https://www.nytimes.com/2025/10/20/nyregion/alex-bores-ny-congress-primary.html">current congressional candidate Alex Bores</a>). This bill (while weaker than we would have hoped) serves as a huge milestone for AI regulation in the USA, being only the second bill of its kind nationwide (the other one being the <a href="https://legiscan.com/CA/text/SB53/id/3041703">California bill SB 53</a>). Our NYC group made hundreds of phone calls to the Governor's office to move the needle and make that possible. If you want to make <i>real</i> change on this issue, we are the group to join.</p>
         <p>We meet in real life!! Here is a photo from our last general meeting:</p>
-        <img src="@/assets/pai-general-2026-03-07-172157.jpeg" alt="Pause AI NYC group photo" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/pai-general-march-p.jpeg" alt="Pause AI NYC group photo" style="width: 100%; border-radius: 8px;" />
         <p>But we also do other things like canvassing and interviewing people in parks across the city! Look out for our upcoming street interviews on our social media :) here is a pic from our last interview shoot:</p>
-        <img src="@/assets/pai-interview-2026-02-16-165820.jpeg" alt="Pause AI NYC interview" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/pai-interview-feb-p.jpeg" alt="Pause AI NYC interview" style="width: 100%; border-radius: 8px;" />
         <p>Washington Square Park is so beautiful this time of year.</p>
-        <img src="@/assets/washington-square-2026-02-16-152013.jpeg" alt="Washington Square Park" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/washington-square-2026-02-16-152013-p.jpeg" alt="Washington Square Park" style="width: 100%; border-radius: 8px;" />
         <p>But don't worry the weather is getting warmer and we are going to be out <u>every week</u>, and I wanna see <u><i>you</i></u> there!</p>
       </div>
       <div class="about-section-heading">Additional Fun Photos</div>
       <div class="content-text">
         <p>Here is us getting pizza:</p>
-        <img src="@/assets/pizza-2.jpg" alt="pizza pic" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/pizza-2-p.jpg" alt="pizza pic" style="width: 100%; border-radius: 8px;" />
         <p>Here is a picture from our last general meeting in February (please ignore the Halloween decorations, they give us a spooky vibe and we didnt just totally forget to take them down):</p>
-        <img src="@/assets/pai-general-feb.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/pai-general-feb-p.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
 
         <p>Here another amazin' photo of us eating pizza. We just do this sometimes for fun or if we are hungry. Not an official club event, but you know what they say; "It's Pizza!":</p>
-        <img src="@/assets/pizza-2026-02-07-195351.jpeg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/pizza-p.jpeg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
         <p>Finally I will leave you with the most beautiful creature that I know. The cat named Sunny <3<3<3 </p>
-        <img src="@/assets/sunny-pic.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
+        <img src="@/assets/sunny-pic-p.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
         <!-- TODO: Write the About Us content for Pause AI NYC.
              who we are, our mission, how people can get involved,
              and what makes the NYC group unique. Use <p> tags for paragraphs. -->
