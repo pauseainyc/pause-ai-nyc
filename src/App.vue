@@ -3,8 +3,8 @@
     <div class="header-emblem">
       <img class="header-emblem-logo" src="@/assets/logo.png" alt="Pause AI NYC logo" />
       <div class="header-emblem-text">
-        <span class="black">PAUSE</span>
-        <span class="orange">AI NYC</span>
+        <span class="pause-ai-box"><span class="black">PAUSE</span><span class="orange">AI</span></span>
+        <span class="orange"> NYC</span>
       </div>
     </div>
     <div id="social-media-icons">
@@ -45,7 +45,7 @@ header {
   margin: 32px auto 0;
   align-items: center;
   padding: 24px 32px;
-  background: white;
+  background: linear-gradient(to bottom, #D0D0D0, #A0A0A0, #C0C0C0, #888888);
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   width: fit-content;
@@ -54,17 +54,27 @@ header {
 }
 .header-emblem {
   display: flex;
-  gap: 8px;
+  gap: 0;
   .header-emblem-logo {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     margin: auto;
+    position: relative;
+    z-index: 1;
   }
   .header-emblem-text, .header-emblem-text * {
     font-size: 42px;
     font-weight: bold;
     margin: auto;
     text-wrap: nowrap;
+  }
+  .header-emblem-text {
+    margin-left: -42px;
+  }
+  .pause-ai-box {
+    background: white;
+    border-radius: 999px;
+    padding: 0px 12px 0px 40px;
     .orange {
       color: #FF942B;
     }
