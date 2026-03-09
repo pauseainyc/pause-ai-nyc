@@ -21,12 +21,16 @@ onMounted(() => {
     background: [13, 13, 13],
   })
 
-  k.add([
-    k.text('PLACEHOLDER', { size: 32 }),
-    k.pos(k.center()),
-    k.anchor('center'),
-    k.color(255, 255, 255),
-  ])
+  k.loadFont('press-start-2p', 'https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2')
+
+  k.onLoad(() => {
+    k!.add([
+      k!.text('PLACEHOLDER', { size: 32, font: 'press-start-2p' }),
+      k!.pos(k!.center()),
+      k!.anchor('center'),
+      k!.color(255, 255, 255),
+    ])
+  })
 })
 
 onUnmounted(() => {
