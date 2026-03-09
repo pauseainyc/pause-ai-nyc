@@ -26,7 +26,7 @@
         <p>Here is a picture from our last general meeting in February (please ignore the Halloween decorations, they give us a spooky vibe and we didnt just totally forget to take them down):</p>
         <img src="@/assets/pai-general-feb-p.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
 
-        <p>Here another amazin' photo of us eating pizza. We just do this sometimes for fun or if we are hungry. Not an official club event, but you know what they say; "It's Pizza!":</p>
+        <p>Here another amazin' photo of us eating pizza. We just do this sometimes for fun or if we are hungry. Not an official club event, but we live in New York and pizza is our #1 food group:</p>
         <img src="@/assets/pizza-p.jpeg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
         <p>Finally I will leave you with the most beautiful creature that I know. The cat named Sunny <3<3<3 </p>
         <img src="@/assets/sunny-pic-p.jpg" alt="General Feb" style="width: 100%; border-radius: 8px;" />
