@@ -1,5 +1,6 @@
 body {
   min-height: 100vh;
+  position: relative;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -18,4 +19,28 @@ body {
     'Helvetica Neue',
     sans-serif;
   font-size: 14px;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('./pauseai-background-animated.gif');
+  background-repeat: repeat;
+  background-size: 90px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  -webkit-mask-image: repeating-linear-gradient(to right, black 0 90px, transparent 90px 180px);
+  mask-image: repeating-linear-gradient(to right, black 0 90px, transparent 90px 180px);
+}
+
+body::after {
+  background-position: 0 45px;
+  -webkit-mask-image: repeating-linear-gradient(to right, transparent 0 90px, black 90px 180px);
+  mask-image: repeating-linear-gradient(to right, transparent 0 90px, black 90px 180px);
+  z-index: -2;
 }

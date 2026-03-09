@@ -42,9 +42,15 @@ header {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: auto;
+  margin: 32px auto 0;
   align-items: center;
-  padding: 32px 32px 0 32px;
+  padding: 24px 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  padding-left: 264px;
+  padding-right: 264px;
 }
 .header-emblem {
   display: flex;
@@ -105,7 +111,12 @@ nav a {
   }
 }
 #router-view-container {
-  padding: 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  padding: 32px 32px;
+  margin: 16px auto 0;
 }
 
 footer {
