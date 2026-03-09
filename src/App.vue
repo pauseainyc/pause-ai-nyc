@@ -4,7 +4,7 @@
       <img class="header-emblem-logo" src="@/assets/logo.png" alt="Pause AI NYC logo" />
       <div class="header-emblem-text">
         <span class="pause-ai-box"><span class="black">PAUSE</span><span class="orange">AI</span></span>
-        <span class="orange"> NYC</span>
+        <span class="orange" style="margin-left: 16px">    <span class="n-train">N</span>   <span class="y-train">Y</span>   <span class="c-train">C</span>  </span>
       </div>
     </div>
     <div id="social-media-icons">
@@ -81,6 +81,50 @@ header {
     .black {
       color: #0D0D0D;
     }
+  }
+  .n-train, .y-train, .c-train {
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .n-train {
+    background: #FCCC0A;
+    color: black;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: -2px;
+  }
+  .y-train {
+    background: #FF6319;
+    color: white;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 0px;
+    margin-top: -2px;
+  }
+  .c-train {
+    background: #0039A6;
+    color: white;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    margin-top: -2px;
   }
 }
 
