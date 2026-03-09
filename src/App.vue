@@ -48,9 +48,9 @@ header {
   background: linear-gradient(to bottom, #D0D0D0, #A0A0A0, #C0C0C0, #888888);
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  width: fit-content;
-  padding-left: 264px;
-  padding-right: 264px;
+  max-width: 864px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .header-emblem {
   display: flex;
