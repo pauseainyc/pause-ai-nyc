@@ -12,9 +12,9 @@
       </div>
       <div class="control-group">
         <label for="level-select">Level</label>
-        <select id="level-select" :value="displayLevel" disabled>
-          <option v-for="l in levelOptions" :key="l" :value="l">
-            Level {{ l }}{{ l > (selectedCharacter?.current_level ?? 0) ? ' (locked)' : '' }}
+        <select id="level-select" v-model.number="selectedLevel" @change="onLevelChange">
+          <option v-for="l in levelOptions" :key="l" :value="l" :disabled="l > (selectedCharacter?.current_level ?? 0)">
+            Level {{ l + 1 }}{{ l > (selectedCharacter?.current_level ?? 0) ? ' (locked)' : '' }}
           </option>
         </select>
       </div>
@@ -43,7 +43,7 @@
           rows="3"
           @keydown.enter.exact.prevent="sendChat"
         ></textarea>
-        <button type="submit" :disabled="loading || !selectedCharId || !chatInput.trim()">
+        <button type="submit" :disabled="loading || !selectedCharId || (!chatInput.trim() && !lastPrompt)">
           {{ loading ? 'Sending…' : 'Send' }}
         </button>
       </form>
@@ -85,6 +85,7 @@ const characters = ref<CharacterOut[]>([])
 const selectedCharId = ref('')
 const chatMessages = ref<{ role: 'user' | 'assistant'; text: string }[]>([])
 const chatInput = ref('')
+const lastPrompt = ref('')
 const guessInput = ref('')
 const loading = ref(false)
 const guessResult = ref<{ correct: boolean; message: string } | null>(null)
@@ -94,7 +95,7 @@ const selectedCharacter = computed(() =>
   characters.value.find((c) => c.id === selectedCharId.value) ?? null,
 )
 
-const displayLevel = computed(() => selectedCharacter.value?.current_level ?? 0)
+const selectedLevel = ref(0)
 
 const levelOptions = computed(() => {
   const char = selectedCharacter.value
@@ -137,10 +138,18 @@ async function loadCharacters() {
 }
 
 function onCharacterChange() {
+  selectedLevel.value = selectedCharacter.value?.current_level ?? 0
   chatMessages.value = []
   guessResult.value = null
   chatInput.value = ''
   guessInput.value = ''
+  lastPrompt.value = ''
+}
+
+function onLevelChange() {
+  chatMessages.value = []
+  guessResult.value = null
+  lastPrompt.value = ''
 }
 
 async function scrollToBottom() {
@@ -151,9 +160,11 @@ async function scrollToBottom() {
 }
 
 async function sendChat() {
-  const prompt = chatInput.value.trim()
+  const prompt = chatInput.value.trim() || lastPrompt.value
   if (!prompt || !selectedCharId.value) return
 
+  lastPrompt.value = prompt
+  chatInput.value = prompt
   chatMessages.value = [{ role: 'user', text: prompt }]
   loading.value = true
   await scrollToBottom()
@@ -161,7 +172,7 @@ async function sendChat() {
   try {
     const res = await apiFetch('/api/chat', {
       method: 'POST',
-      body: JSON.stringify({ character_id: selectedCharId.value, prompt }),
+      body: JSON.stringify({ character_id: selectedCharId.value, prompt, level: selectedLevel.value }),
     })
     const data = await res.json()
     chatMessages.value.push({ role: 'assistant', text: data.reply })
@@ -183,12 +194,16 @@ async function submitGuess() {
   try {
     const res = await apiFetch('/api/guess', {
       method: 'POST',
-      body: JSON.stringify({ character_id: selectedCharId.value, guess }),
+      body: JSON.stringify({ character_id: selectedCharId.value, guess, level: selectedLevel.value }),
     })
     const data = await res.json()
     guessResult.value = { correct: data.correct, message: data.message }
     if (data.correct) {
       await loadCharacters()
+      const char = selectedCharacter.value
+      if (char && selectedLevel.value === char.current_level - 1) {
+        selectedLevel.value = char.current_level
+      }
     }
   } catch (e) {
     guessResult.value = { correct: false, message: 'Error: failed to submit guess.' }
