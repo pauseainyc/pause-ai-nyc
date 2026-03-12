@@ -16,7 +16,7 @@
     </div>
     <nav id="header-nav">
       <RouterLink class="header-nav-link" to="/">Home</RouterLink>
-      <!-- <div class="separator"></div> -->
+      <RouterLink class="header-nav-link" to="/about">About Us</RouterLink>
     </nav>
   </header>
   <div id="router-view-container">
