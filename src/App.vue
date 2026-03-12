@@ -17,6 +17,7 @@
     <nav id="header-nav">
       <RouterLink class="header-nav-link" to="/">Home</RouterLink>
       <RouterLink class="header-nav-link" to="/about">About Us</RouterLink>
+      <RouterLink class="header-nav-link" to="/demo">Demo</RouterLink>
     </nav>
   </header>
   <div id="router-view-container">
