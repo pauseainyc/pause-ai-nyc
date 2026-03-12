@@ -1,0 +1,429 @@
+<template>
+  <div class="demo-page">
+    <h1 class="page-heading">JailBreak</h1>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="character-select">Character</label>
+        <select id="character-select" v-model="selectedCharId" @change="onCharacterChange">
+          <option value="" disabled>Select a character…</option>
+          <option v-for="c in characters" :key="c.id" :value="c.id">{{ c.name }}</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="level-select">Level</label>
+        <select id="level-select" v-model="displayLevel" disabled>
+          <option v-for="l in levelOptions" :key="l" :value="l">
+            Level {{ l }}{{ l >= selectedCharacter?.current_level! ? ' (locked)' : '' }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div v-if="selectedCharacter" class="description-area content-box">
+      <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
+      <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
+      <p>{{ selectedCharacter.description }}</p>
+    </div>
+
+    <div class="chat-section content-box">
+      <h2>Chat</h2>
+      <div class="chat-messages" ref="chatMessagesEl">
+        <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
+        <div v-for="(msg, i) in chatMessages" :key="i" :class="['chat-msg', msg.role]">
+          <span class="chat-role">{{ msg.role === 'user' ? 'You' : 'AI' }}:</span>
+          {{ msg.text }}
+        </div>
+      </div>
+      <form class="chat-input" @submit.prevent="sendChat">
+        <input
+          v-model="chatInput"
+          type="text"
+          placeholder="Type your prompt…"
+          :disabled="loading || !selectedCharId"
+        />
+        <button type="submit" :disabled="loading || !selectedCharId || !chatInput.trim()">
+          {{ loading ? 'Sending…' : 'Send' }}
+        </button>
+      </form>
+    </div>
+
+    <div class="guess-section content-box">
+      <h2>Guess the Password</h2>
+      <form class="guess-input" @submit.prevent="submitGuess">
+        <input
+          v-model="guessInput"
+          type="text"
+          placeholder="Enter your guess…"
+          :disabled="loading || !selectedCharId"
+        />
+        <button type="submit" :disabled="loading || !selectedCharId || !guessInput.trim()">Submit</button>
+      </form>
+      <div v-if="guessResult" :class="['guess-result', guessResult.correct ? 'correct' : 'incorrect']">
+        {{ guessResult.message }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, onMounted, nextTick } from 'vue'
+
+interface CharacterOut {
+  id: string
+  name: string
+  description: string
+  current_level: number
+  total_levels: number
+  completed: boolean
+}
+
+const API_BASE = 'http://localhost:8000'
+
+const characters = ref<CharacterOut[]>([])
+const selectedCharId = ref('')
+const chatMessages = ref<{ role: 'user' | 'assistant'; text: string }[]>([])
+const chatInput = ref('')
+const guessInput = ref('')
+const loading = ref(false)
+const guessResult = ref<{ correct: boolean; message: string } | null>(null)
+const chatMessagesEl = ref<HTMLElement | null>(null)
+
+const selectedCharacter = computed(() =>
+  characters.value.find((c) => c.id === selectedCharId.value) ?? null,
+)
+
+const displayLevel = computed(() => selectedCharacter.value?.current_level ?? 0)
+
+const levelOptions = computed(() => {
+  const char = selectedCharacter.value
+  if (!char) return []
+  return Array.from({ length: char.total_levels }, (_, i) => i)
+})
+
+function getToken(): string | null {
+  return localStorage.getItem('jailbreak-token')
+}
+
+function saveToken(token: string) {
+  localStorage.setItem('jailbreak-token', token)
+}
+
+async function apiFetch(path: string, options: RequestInit = {}): Promise<Response> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(options.headers as Record<string, string>),
+  }
+  const token = getToken()
+  if (token) {
+    headers['X-Session-Token'] = token
+  }
+  const res = await fetch(API_BASE + path, { ...options, headers })
+  const returnedToken = res.headers.get('X-Session-Token')
+  if (returnedToken) {
+    saveToken(returnedToken)
+  }
+  return res
+}
+
+async function loadCharacters() {
+  try {
+    const res = await apiFetch('/api/characters')
+    characters.value = await res.json()
+  } catch (e) {
+    console.error('Failed to load characters:', e)
+  }
+}
+
+function onCharacterChange() {
+  chatMessages.value = []
+  guessResult.value = null
+  chatInput.value = ''
+  guessInput.value = ''
+}
+
+async function scrollToBottom() {
+  await nextTick()
+  if (chatMessagesEl.value) {
+    chatMessagesEl.value.scrollTop = chatMessagesEl.value.scrollHeight
+  }
+}
+
+async function sendChat() {
+  const prompt = chatInput.value.trim()
+  if (!prompt || !selectedCharId.value) return
+
+  chatMessages.value.push({ role: 'user', text: prompt })
+  chatInput.value = ''
+  loading.value = true
+  await scrollToBottom()
+
+  try {
+    const res = await apiFetch('/api/chat', {
+      method: 'POST',
+      body: JSON.stringify({ character_id: selectedCharId.value, prompt }),
+    })
+    const data = await res.json()
+    chatMessages.value.push({ role: 'assistant', text: data.reply })
+  } catch (e) {
+    chatMessages.value.push({ role: 'assistant', text: 'Error: failed to get response.' })
+  } finally {
+    loading.value = false
+    await scrollToBottom()
+  }
+}
+
+async function submitGuess() {
+  const guess = guessInput.value.trim()
+  if (!guess || !selectedCharId.value) return
+
+  loading.value = true
+  guessResult.value = null
+
+  try {
+    const res = await apiFetch('/api/guess', {
+      method: 'POST',
+      body: JSON.stringify({ character_id: selectedCharId.value, guess }),
+    })
+    const data = await res.json()
+    guessResult.value = { correct: data.correct, message: data.message }
+    if (data.correct) {
+      await loadCharacters()
+    }
+  } catch (e) {
+    guessResult.value = { correct: false, message: 'Error: failed to submit guess.' }
+  } finally {
+    loading.value = false
+    guessInput.value = ''
+  }
+}
+
+onMounted(() => {
+  loadCharacters()
+})
+</script>
+
+<style scoped lang="scss">
+.demo-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #0d0d0d;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+
+  .control-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    select {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fff;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.content-box {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.description-area {
+  p {
+    margin: 8px 0 0;
+    line-height: 1.6;
+  }
+
+  .badge-completed {
+    display: inline-block;
+    background: #FF942B;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: bold;
+  }
+}
+
+.chat-section {
+  h2 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+  }
+
+  .chat-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    min-height: 80px;
+  }
+
+  .chat-empty {
+    color: #999;
+    font-style: italic;
+    margin: auto;
+    text-align: center;
+  }
+
+  .chat-msg {
+    line-height: 1.5;
+    word-break: break-word;
+
+    .chat-role {
+      font-weight: bold;
+    }
+
+    &.user {
+      color: #0d0d0d;
+    }
+
+    &.assistant {
+      color: #555;
+    }
+  }
+
+  .chat-input {
+    display: flex;
+    gap: 8px;
+
+    input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+
+    button {
+      padding: 8px 20px;
+      background: #FF942B;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        filter: brightness(90%);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.guess-section {
+  h2 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+  }
+
+  .guess-input {
+    display: flex;
+    gap: 8px;
+
+    input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+
+    button {
+      padding: 8px 20px;
+      background: #FF942B;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        filter: brightness(90%);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .guess-result {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+
+    &.correct {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    &.incorrect {
+      background: #fbe9e7;
+      color: #c62828;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .page-heading {
+    font-size: 1.5rem;
+  }
+}
+</style>
