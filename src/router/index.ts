@@ -4,6 +4,7 @@ import AboutView from '@/views/AboutView.vue'
 import RedirectView from '@/views/RedirectView.vue'
 import MembersBlogView from '@/views/MembersBlogView.vue'
 import CallingAllMembersArticle from '@/views/blog/CallingAllMembersArticle.vue'
+import DemoView from '@/views/DemoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/blog/calling-all-members',
       name: 'calling-all-members',
       component: CallingAllMembersArticle,
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: DemoView,
     },
     {
       path: '/qr0',
