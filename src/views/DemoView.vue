@@ -12,9 +12,9 @@
       </div>
       <div class="control-group">
         <label for="level-select">Level</label>
-        <select id="level-select" v-model="displayLevel" disabled>
+        <select id="level-select" :value="displayLevel" disabled>
           <option v-for="l in levelOptions" :key="l" :value="l">
-            Level {{ l }}{{ l >= selectedCharacter?.current_level! ? ' (locked)' : '' }}
+            Level {{ l }}{{ l > (selectedCharacter?.current_level ?? 0) ? ' (locked)' : '' }}
           </option>
         </select>
       </div>
@@ -36,12 +36,13 @@
         </div>
       </div>
       <form class="chat-input" @submit.prevent="sendChat">
-        <input
+        <textarea
           v-model="chatInput"
-          type="text"
           placeholder="Type your prompt…"
           :disabled="loading || !selectedCharId"
-        />
+          rows="3"
+          @keydown.enter.exact.prevent="sendChat"
+        ></textarea>
         <button type="submit" :disabled="loading || !selectedCharId || !chatInput.trim()">
           {{ loading ? 'Sending…' : 'Send' }}
         </button>
@@ -153,8 +154,7 @@ async function sendChat() {
   const prompt = chatInput.value.trim()
   if (!prompt || !selectedCharId.value) return
 
-  chatMessages.value.push({ role: 'user', text: prompt })
-  chatInput.value = ''
+  chatMessages.value = [{ role: 'user', text: prompt }]
   loading.value = true
   await scrollToBottom()
 
@@ -304,6 +304,7 @@ onMounted(() => {
   .chat-msg {
     line-height: 1.5;
     word-break: break-word;
+    white-space: pre-wrap;
 
     .chat-role {
       font-weight: bold;
@@ -322,12 +323,15 @@ onMounted(() => {
     display: flex;
     gap: 8px;
 
-    input {
+    textarea {
       flex: 1;
       padding: 8px 12px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 44px;
 
       &:disabled {
         opacity: 0.5;
@@ -343,6 +347,7 @@ onMounted(() => {
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
+      align-self: flex-end;
 
       &:hover:not(:disabled) {
         filter: brightness(90%);
