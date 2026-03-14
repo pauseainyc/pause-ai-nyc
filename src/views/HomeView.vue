@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div class="home-section">
-      <div class="home-section-heading">First, help us out!</div>
+      <div class="home-section-heading">Get involved!</div>
       <LinkTree/>
     </div>
     <div class="home-section">
