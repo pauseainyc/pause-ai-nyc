@@ -10,7 +10,7 @@
     <div id="social-media-icons">
       <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
         <svg>
-          <use :href="`/socialMediaIcons/${icon.svg}`"></use>
+          <use :href="`/icons/${icon.svg}.svg`"></use>
         </svg>
       </a>
     </div>
@@ -31,9 +31,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 
 const socialMediaIcons = [
-  { name: 'Instagram', url: 'https://www.instagram.com/pauseainyc', svg: 'instagram.svg'},
-  { name: 'X (Twitter)', url: 'https://x.com/PauseAINYC', svg: 'x.svg'},
-  { name: 'Facebook Group', url: 'https://www.facebook.com/groups/pauseainyc/', svg: 'facebook.svg'},
+  { name: 'Instagram', url: 'https://www.instagram.com/pauseainyc', svg: 'instagram'},
+  { name: 'X (Twitter)', url: 'https://x.com/PauseAINYC', svg: 'x'},
+  { name: 'Facebook Group', url: 'https://www.facebook.com/groups/pauseainyc/', svg: 'facebook'},
 ]
 </script>
 
