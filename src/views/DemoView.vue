@@ -24,6 +24,7 @@
       <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
       <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
       <p>{{ selectedCharacter.description }}</p>
+      <p v-if="currentLevelDesc" class="level-desc">{{ currentLevelDesc }}</p>
     </div>
 
     <div class="chat-section content-box">
@@ -47,6 +48,7 @@
           {{ loading ? 'Sending…' : 'Send' }}
         </button>
       </form>
+      <div v-if="duplicateWarning" class="duplicate-warning">{{ duplicateWarning }}</div>
     </div>
 
     <div class="guess-section content-box">
@@ -77,6 +79,7 @@ interface CharacterOut {
   current_level: number
   total_levels: number
   completed: boolean
+  level_descriptions: string[]
 }
 
 const API_BASE = 'http://localhost:8000'
@@ -90,12 +93,19 @@ const guessInput = ref('')
 const loading = ref(false)
 const guessResult = ref<{ correct: boolean; message: string } | null>(null)
 const chatMessagesEl = ref<HTMLElement | null>(null)
+const usedPrompts = new Set<string>()
 
 const selectedCharacter = computed(() =>
   characters.value.find((c) => c.id === selectedCharId.value) ?? null,
 )
 
 const selectedLevel = ref(0)
+
+const currentLevelDesc = computed(() => {
+  const char = selectedCharacter.value
+  if (!char) return ''
+  return char.level_descriptions?.[selectedLevel.value] ?? ''
+})
 
 const levelOptions = computed(() => {
   const char = selectedCharacter.value
@@ -159,9 +169,19 @@ async function scrollToBottom() {
   }
 }
 
+const duplicateWarning = ref('')
+
 async function sendChat() {
   const prompt = chatInput.value.trim() || lastPrompt.value
   if (!prompt || !selectedCharId.value) return
+
+  const promptKey = `${selectedCharId.value}:${selectedLevel.value}:${prompt}`
+  if (usedPrompts.has(promptKey)) {
+    duplicateWarning.value = 'You already sent this prompt. Try a different one.'
+    return
+  }
+  usedPrompts.add(promptKey)
+  duplicateWarning.value = ''
 
   lastPrompt.value = prompt
   chatInput.value = prompt
@@ -277,6 +297,13 @@ onMounted(() => {
     line-height: 1.6;
   }
 
+  .level-desc {
+    margin: 8px 0 0;
+    font-style: italic;
+    color: #666;
+    line-height: 1.5;
+  }
+
   .badge-completed {
     display: inline-block;
     background: #FF942B;
@@ -373,6 +400,15 @@ onMounted(() => {
         cursor: not-allowed;
       }
     }
+  }
+
+  .duplicate-warning {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #fff3e0;
+    color: #e65100;
+    font-weight: bold;
   }
 }
 
