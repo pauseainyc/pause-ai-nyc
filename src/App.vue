@@ -1,22 +1,29 @@
 <template>
   <header>
-    <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
-    <div id="social-media-icons">
-      <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
-        <svg>
-          <use :href="`/icons/${icon.svg}.svg#logo`"></use>
-        </svg>
-      </a>
+    <div class="header-container">
+      <div class="header-logo-container">
+        <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
+      </div>
+      <nav class="header-nav">
+        <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
+        <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
+      </nav>
+      <div id="social-media-icons">
+        <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
+          <svg>
+            <use :href="`/icons/${icon.svg}.svg#logo`"></use>
+          </svg>
+        </a>
+      </div>
     </div>
-    <nav id="header-nav">
-      <RouterLink class="header-nav-link" to="/">Home</RouterLink>
-      <RouterLink class="header-nav-link" to="/about">About Us</RouterLink>
-    </nav>
   </header>
   <div id="router-view-container">
     <RouterView/>
   </div>
   <footer>
+    <div class="skyline-img-container">
+      <img class="skyline-img" src="@/assets/nyc-skyline.png" alt="NYC skyline pixel art" />
+    </div>
     <div id="copyright-statement">PauseAI NYC © 2026</div>
   </footer>
 </template>
@@ -32,24 +39,70 @@ const socialMediaIcons = [
 </script>
 
 <style scoped lang="scss">
-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: auto;
+
+.header-container {
+  position: fixed; 
+  top: 0;
+  width: 100vw;
+  background-color: white;
+
+  display: flex; 
   align-items: center;
-  padding: 32px 32px 0 32px;
+  justify-content: left;
+
+  height: 80px;
+  border-bottom: 2px solid black;
+  // opacity: 0.9;
 }
-.header-logo {
-  height: 100px;
-  margin: auto;
+
+.header-logo-container {
+  height: 64px;
+  margin: 0px 32px;
+  .header-logo {
+    height: 100%;
+    margin: auto;
+  }
+}
+
+.header-nav {
+  nav {
+    display: flex; 
+  }
+  a {
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    background-color: #FF942B;
+    color: black;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 8px;
+  }
+  a:hover { background: none; }
+
+  .router-link-active {
+    color: #FF942B;
+    background-color: black;
+
+    &:hover {
+      color: #FF942B;
+      background-color: black;
+    }
+  }
+}
+
+.router-link-active {
+  &:hover {
+    background: none;
+  }
 }
 
 #social-media-icons {
   display: flex;
   flex-direction: row;
   gap: 16px;
-  margin: auto;
+  margin-right: 32px;
+  margin-left: auto;
+
   .social-media-icon {
     display: block;
     width: 32px;
@@ -68,25 +121,24 @@ header {
     }
   }
 }
-nav {
-  display: flex;
-}
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-}
-.router-link-active {
-  filter: brightness(80%);
-  &:hover {
-    background: none;
-  }
-}
+
 #router-view-container {
+  margin-top: 80px;
   padding: 32px;
 }
 
 footer {
   display: flex;
+  flex-direction: column;
+
+  .skyline-img-container {
+    margin: auto;
+    img {
+      height: 80px;
+      width: auto;
+    }
+  }
+
   #copyright-statement {
     font-weight: bold;
     padding: 8px;
