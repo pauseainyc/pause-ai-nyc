@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="200px" height="200px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+<circle id="circle_1_" fill="#FF9416" cx="100" cy="100" r="99.897"/>
+<g id="empire">
+	<polygon id="antenna" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		121.647,61.921 123.476,44.606 125.304,61.921 	"/>
+	
+		<rect id="main" x="113.485" y="59.05" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="19.98" height="85.405"/>
+	
+		<polygon id="trapezoid" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		116.606,59.05 117.937,55.574 129.349,55.574 130.345,59.05 	"/>
+	
+		<rect id="top_right" x="129.802" y="64.812" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="6.16" height="14.942"/>
+	
+		<rect id="top_left" x="110.989" y="64.812" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="6.162" height="14.942"/>
+	
+		<rect id="mid_right" x="128.37" y="79.754" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="7.592" height="51.054"/>
+	
+		<rect id="mid_left" x="110.989" y="79.754" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="7.676" height="51.054"/>
+	
+		<rect id="bottom_right" x="126.157" y="123.754" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="9.805" height="20.701"/>
+	
+		<rect id="bottom_left" x="110.989" y="123.754" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="9.805" height="20.701"/>
+</g>
+<g id="liberty">
+	
+		<rect id="neck" x="78.689" y="66.899" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="9.144" height="12.123"/>
+	<path id="face" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M77.423,58.002v9.232c0,0,3.206,4.537,6.066,4.483c2.447-0.045,5.521-4.483,5.521-4.483v-9.232H77.423z"/>
+	<polygon id="arm" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-miterlimit="10" points="65.036,83.66 65.036,66.699 
+		68.657,66.699 74.693,79.888 	"/>
+	<polygon id="robe_1_" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		64.087,83.017 75.625,75.227 89.011,75.227 89.011,144.455 64.037,144.455 	"/>
+	
+		<path id="wrinkle2" fill="none" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M64.053,141.656c0,0,1.224-9.09,14.07-18.5c9.676-7.09,10.888-15.365,10.888-15.365"/>
+	
+		<path id="wrinkle1" fill="none" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M64.073,110.588c0,0-1.335-5.768,10.088-12.486c9.114-5.361,9.101-10.724,9.101-10.724"/>
+	
+		<rect id="torch3_1_" x="64.037" y="58.002" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="5.678" height="11.852"/>
+	<path id="torch2_2_" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M65.076,55.747c-0.841-0.253-1.647-0.855-1.813-2.287c-0.14-1.204,0.321-2.898,3.21-3.712c3.848-1.084,6.689-3.138,6.689-3.138
+		s-0.244,1.274-1.161,5.102c-0.67,2.789-1.298,3.578-3.202,4.035C67.567,56.042,65.959,56.012,65.076,55.747z"/>
+	
+		<rect id="torch1_1_" x="61.874" y="55.524" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="9.955" height="4.373"/>
+	
+		<polygon id="torch_hand" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		63.14,62.903 63.129,67.604 66.326,67.604 67.823,62.903 	"/>
+	<path id="crown" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M77.423,62.039l-1.437-3.196l-4.927-4.519l6.314,3.014l0.771-0.516l-3.431-7.816l5.886,6.738l1.111-0.068l1.673-9.066l1.246,8.9
+		l1.156,0.086l5.68-6.798l-3.406,7.774l0.885,0.625l6.161-3.637l-4.962,5.284l-1.133,3.196c0,0-0.799-2.997-5.519-2.997
+		C78.434,59.042,77.423,62.039,77.423,62.039z"/>
+	
+		<rect id="tablet" x="81.419" y="82.618" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" width="9.164" height="17.382"/>
+	
+		<polygon id="tablet_hand" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		91.788,87.378 91.799,92.078 88.602,92.078 87.104,87.378 	"/>
+	<polygon id="foot" fill="#FFFFFF" stroke="#ABABAB" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+		81.265,144.439 89.011,144.455 89.011,140.057 81.265,138.594 	"/>
+</g>
+<g id="empire_outline_1_">
+	<path d="M123.476,44.605l1.16,10.968h4.713l0.996,3.477h3.121v5.762h2.496v79.643h-24.973V64.812h2.496V59.05h3.121l1.328-3.477
+		h4.383L123.476,44.605 M123.476,42.605L123.476,42.605c-1.023,0-1.882,0.772-1.989,1.79l-0.969,9.178h-2.583
+		c-0.829,0-1.572,0.512-1.868,1.286l-0.837,2.19h-1.744c-1.104,0-2,0.896-2,2v3.762h-0.496c-1.104,0-2,0.896-2,2v79.643
+		c0,1.104,0.896,2,2,2h24.973c1.104,0,2-0.896,2-2V64.812c0-1.104-0.896-2-2-2h-0.496V59.05c0-1.104-0.896-2-2-2h-1.613
+		l-0.581-2.027c-0.246-0.858-1.03-1.449-1.923-1.449h-2.913l-0.971-9.179C125.356,43.377,124.499,42.605,123.476,42.605
+		L123.476,42.605z"/>
+</g>
+<g id="liberty_outline_1_">
+	<path d="M83.383,46.609l1.247,8.9l1.156,0.086l5.68-6.799l-3.406,7.774l0.883,0.625l6.162-3.638l-4.961,5.285l-1.133,3.196v5.195
+		c0,0-0.466,0.669-1.177,1.492v6.5h1.177v7.391h1.572v4.759h1.205l0.01,4.701h-1.215V100h-1.572v44.455H64.037l0.05-61.44
+		l0.949-0.646V69.854h-0.999v-2.25h-0.909l0.012-4.701h0.897v-3.005h-2.164v-4.373h2.663c-0.623-0.334-1.145-0.945-1.274-2.064
+		c-0.14-1.205,0.323-2.899,3.21-3.712c3.789-1.068,6.6-3.074,6.688-3.136c-0.01,0.062-0.264,1.367-1.158,5.101
+		c-0.288,1.195-0.565,2.021-0.94,2.613c-0.377,0.591-0.846,0.949-1.518,1.199h2.286v4.373h-2.114v9.114l3.555,7.769l2.355-1.554
+		h3.064v-6.448c-0.772-0.845-1.267-1.544-1.267-1.544v-5.195l-1.436-3.196l-4.927-4.518l6.313,3.013l0.771-0.515l-3.431-7.816
+		l5.886,6.737l1.111-0.067L83.383,46.609 M83.382,44.609c-0.962,0-1.791,0.687-1.966,1.637l-1.125,6.104l-4.07-4.659
+		c-0.298-0.341-0.69-0.559-1.108-0.644c0.012-0.062,0.019-0.102,0.022-0.125c0.125-0.793-0.237-1.585-0.919-2.009
+		c-0.324-0.202-0.69-0.302-1.056-0.302c-0.404,0-0.808,0.123-1.153,0.366c-0.114,0.081-2.698,1.893-6.078,2.846
+		c-4.686,1.32-4.772,4.679-4.662,5.795c-0.808,0.257-1.394,1.013-1.394,1.907v4.373c0,0.955,0.67,1.754,1.565,1.953
+		c-0.188,0.304-0.298,0.663-0.299,1.047l-0.012,4.701c-0.001,0.531,0.209,1.041,0.584,1.417c0.1,0.1,0.209,0.188,0.325,0.264v0.574
+		c0,0.74,0.402,1.386,0.999,1.732v9.725l-0.074,0.05c-0.547,0.372-0.875,0.991-0.875,1.652l-0.05,61.439
+		c0,0.531,0.21,1.04,0.585,1.416c0.375,0.375,0.884,0.586,1.415,0.586h24.974c1.104,0,2-0.896,2-2v-42.501
+		c0.899-0.196,1.572-0.997,1.572-1.954v-6.083c0.233-0.1,0.448-0.244,0.63-0.427c0.375-0.376,0.585-0.886,0.584-1.417l-0.01-4.701
+		c-0.002-0.821-0.497-1.525-1.205-1.832v-2.923c0-0.958-0.673-1.758-1.572-1.954v-5.437c0-0.811-0.483-1.509-1.177-1.823v-3.952
+		c0.493-0.61,0.802-1.052,0.818-1.075c0.233-0.335,0.358-0.734,0.358-1.143v-4.851l0.878-2.477l4.674-4.979
+		c0.682-0.726,0.725-1.842,0.103-2.619c-0.392-0.489-0.972-0.75-1.562-0.75c-0.348,0-0.698,0.09-1.016,0.278l-2.388,1.41
+		l1.598-3.646c0.399-0.912,0.067-1.979-0.779-2.503c-0.326-0.202-0.69-0.3-1.052-0.3c-0.576,0-1.144,0.248-1.536,0.718l-3.77,4.512
+		l-0.798-5.695c-0.136-0.972-0.957-1.701-1.938-1.722C83.412,44.609,83.397,44.609,83.382,44.609L83.382,44.609z M73.636,53.338
+		c0.101-0.336,0.201-0.708,0.302-1.125l0.704,1.604L73.636,53.338L73.636,53.338z M71.715,61.897h0.114c1.104,0,2-0.896,2-2v-0.32
+		l0.502,0.461l1.091,2.43v4.766c0,0.413,0.128,0.816,0.366,1.154c0.018,0.025,0.355,0.5,0.9,1.145v3.694h-1.064
+		c-0.392,0-0.774,0.115-1.101,0.331l-0.407,0.268l-2.402-5.25V61.897L71.715,61.897z"/>
+</g>
+</svg>
