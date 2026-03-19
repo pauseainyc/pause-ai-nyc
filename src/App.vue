@@ -1,12 +1,6 @@
 <template>
   <header>
-    <div class="header-emblem">
-      <img class="header-emblem-logo" src="@/assets/logo.png" alt="Pause AI NYC logo" />
-      <div class="header-emblem-text">
-        <span class="black">PAUSE</span>
-        <span class="orange">AI NYC</span>
-      </div>
-    </div>
+    <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
     <div id="social-media-icons">
       <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
         <svg>
@@ -46,26 +40,9 @@ header {
   align-items: center;
   padding: 32px 32px 0 32px;
 }
-.header-emblem {
-  display: flex;
-  gap: 8px;
-  .header-emblem-logo {
-    width: 64px;
-    height: 64px;
-    margin: auto;
-  }
-  .header-emblem-text, .header-emblem-text * {
-    font-size: 42px;
-    font-weight: bold;
-    margin: auto;
-    text-wrap: nowrap;
-    .orange {
-      color: #FF942B;
-    }
-    .black {
-      color: #0D0D0D;
-    }
-  }
+.header-logo {
+  height: 100px;
+  margin: auto;
 }
 
 #social-media-icons {
@@ -121,12 +98,10 @@ footer {
   header {
     padding: 20px 20px 0 20px;
   }
-  .header-emblem-logo {
-    width: 50px !important;
-    height: 50px !important;
-  }
-  .header-emblem-text, .header-emblem-text * {
-    font-size: 32px !important;
+  .header-logo {
+    height: unset;
+    max-height: 100px;
+    width: 100%;
   }
   #router-view-container {
     padding: 20px;
