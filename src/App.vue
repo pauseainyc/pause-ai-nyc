@@ -38,7 +38,8 @@ header {
   gap: 16px;
   margin: auto;
   align-items: center;
-  padding: 32px 32px 0 32px;
+  padding: 32px 32px 32px 32px;
+  background-color: #ffffff
 }
 .header-logo {
   height: 100px;
@@ -106,5 +107,11 @@ footer {
   #router-view-container {
     padding: 20px;
   }
+}
+</style>
+
+<style lang="scss">
+#app {
+  background-color: #ff9b1981;
 }
 </style>
