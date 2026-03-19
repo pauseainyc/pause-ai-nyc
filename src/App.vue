@@ -4,7 +4,7 @@
     <div id="social-media-icons">
       <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
         <svg>
-          <use :href="`/icons/${icon.svg}.svg`"></use>
+          <use :href="`/icons/${icon.svg}.svg#logo`"></use>
         </svg>
       </a>
     </div>

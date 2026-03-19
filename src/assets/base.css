@@ -1,4 +1,5 @@
 body {
+  background-color: #FFF2E2; /* Color: Champaigned Mist  */
   min-height: 100vh;
   transition:
     color 0.5s,
