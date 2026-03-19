@@ -1,9 +1,9 @@
 <template>
   <header>
-    <div class="header-container">
-      <div class="header-logo-container">
-        <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
-      </div>
+    <div class="header-logo-container">
+      <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
+    </div>
+    <div class="header-nav-desktop">
       <nav class="header-nav">
         <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
         <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
@@ -15,6 +15,16 @@
           </svg>
         </a>
       </div>
+    </div>
+    <button class="header-nav-mobile-toggle" @click="toggleMobileNav()">Burg</button>
+    <div v-if="showMobileNav" class="header-nav-mobile">
+      <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
+      <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
+      <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
+        <svg>
+          <use :href="`/icons/${icon.svg}.svg#logo`"></use>
+        </svg>
+      </a>
     </div>
   </header>
   <div id="router-view-container">
@@ -29,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 
 const socialMediaIcons = [
@@ -36,11 +47,17 @@ const socialMediaIcons = [
   { name: 'X (Twitter)', url: 'https://x.com/PauseAINYC', svg: 'x'},
   { name: 'Facebook Group', url: 'https://www.facebook.com/groups/pauseainyc/', svg: 'facebook'},
 ]
+
+const showMobileNav = ref(false)
+
+const toggleMobileNav = () => {
+  showMobileNav.value = !showMobileNav.value
+}
 </script>
 
 <style scoped lang="scss">
 
-.header-container {
+header {
   position: fixed; 
   top: 0;
   width: 100vw;
@@ -53,6 +70,20 @@ const socialMediaIcons = [
   height: 80px;
   border-bottom: 2px solid black;
   // opacity: 0.9;
+}
+
+.header-nav-desktop {
+  background: red;
+}
+.header-nav-mobile-toggle {
+  background: yellow;
+  width: 50px;
+  height: 50px;
+  display: none;
+}
+.header-nav-mobile {
+  background: blue;
+  display: none;
 }
 
 .header-logo-container {
@@ -147,8 +178,15 @@ footer {
 }
 
 @media (max-width: 600px) {
-  header {
-    padding: 20px 20px 0 20px;
+  .header-nav-desktop {
+    display: none;
+
+  }
+  .header-nav-mobile {
+    display: block !important;
+  }
+  .header-nav-mobile-toggle {
+    display: block !important;
   }
   .header-logo {
     height: unset;
