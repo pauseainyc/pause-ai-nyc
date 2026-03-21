@@ -44,12 +44,45 @@
 }
 
 .content-box {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  position: relative;  
+  border-color: #00ff00; 
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  content: '';              /* required — makes the pseudo-element exist */
+  inset: 0;                /* stretches to match parent's size */
+  border-radius: 12px;     /* match the parent's border-radius */
+  border: 0px solid;
+  box-shadow: inset 0 0 0 5px #000000; // for rounded corners on the black box
+
+	background:
+  linear-gradient(#ffffff, #ffffff) center/calc(100% - 10px) calc(100% - 10px) no-repeat,
+      #ffffff00;
+
+	background-size: 
+    calc(100% - 10px) calc(100% - 10px),
 }
+
+.content-box::before,
+.content-box::after {
+  content: '';              /* required — makes the pseudo-element exist */
+  position: absolute;
+  inset: -1px;                /* stretches to match parent's size */
+  border-radius: 12px;     /* match the parent's border-radius */
+  border: 2px solid;
+  pointer-events: none;    /* so they don't block clicks on content */
+}
+
+.content-box::before {
+  border-color: #ff0000; 
+  transform: translate(1px, -1px);   /* left 6px, down 6px */
+  mix-blend-mode: difference;
+}
+
+.content-box::after {
+  border-color: #0000ff;
+  transform: translate(-1px, 1px);   /* right 6px, up 6px */
+  mix-blend-mode: difference;
+}
+
 p {
   color: #333;
   margin-bottom: 16px;
