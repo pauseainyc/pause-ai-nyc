@@ -1,7 +1,7 @@
 <template>
-  <div id="members-blog">
+  <div id="blog">
     <div class="section">
-      <div class="section-heading">Members Blog</div>
+      <div class="section-heading">Blog</div>
       <div class="section-content">
         <div v-for="article in blogArticles" :key="article.slug" class="article-preview">
           <RouterLink class="article-title" :to="`/blog/${article.slug}`">{{ article.title }}</RouterLink>
@@ -19,7 +19,7 @@ import { blogArticles, getExcerpt } from '@/data/blogArticles'
 </script>
 
 <style scoped lang="scss">
-#members-blog {
+#blog {
   max-width: 800px;
   display: flex;
   flex-direction: column;

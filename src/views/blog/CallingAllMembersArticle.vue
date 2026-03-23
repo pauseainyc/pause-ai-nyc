@@ -6,7 +6,7 @@
       <div class="section-content">
         <p v-for="(paragraph, i) in paragraphs" :key="i" v-html="formatText(paragraph)"></p>
       </div>
-      <RouterLink class="back-link" to="/blog">&larr; Back to Members Blog</RouterLink>
+      <RouterLink class="back-link" to="/blog">&larr; Back to Blog</RouterLink>
     </div>
   </div>
 </template>
