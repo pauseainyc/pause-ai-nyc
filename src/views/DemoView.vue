@@ -270,10 +270,12 @@ onMounted(() => {
 
     select {
       padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-style: solid;
+      border-width: 10px;
+      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
       font-size: 1rem;
       background: #fff;
+      appearance: auto;
 
       &:disabled {
         opacity: 0.5;
@@ -284,11 +286,10 @@ onMounted(() => {
 }
 
 .content-box {
-  background: #fafafa;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-style: solid;
+  border-width: 10px;
+  border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
 }
 
 .description-area {
@@ -331,8 +332,9 @@ onMounted(() => {
     margin-bottom: 12px;
     padding: 8px;
     background: #fff;
-    border-radius: 8px;
-    border: 1px solid #eee;
+    border-style: solid;
+    border-width: 10px;
+    border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
     min-height: 80px;
   }
 
@@ -368,8 +370,9 @@ onMounted(() => {
     textarea {
       flex: 1;
       padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-style: solid;
+      border-width: 10px;
+      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
       font-size: 1rem;
       font-family: inherit;
       resize: vertical;
@@ -384,8 +387,9 @@ onMounted(() => {
       padding: 8px 20px;
       background: #FF942B;
       color: #fff;
-      border: none;
-      border-radius: 8px;
+      border-style: solid;
+      border-width: 10px;
+      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
@@ -405,7 +409,9 @@ onMounted(() => {
   .duplicate-warning {
     margin-top: 8px;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-style: solid;
+    border-width: 10px;
+    border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
     background: #fff3e0;
     color: #e65100;
     font-weight: bold;
@@ -425,8 +431,9 @@ onMounted(() => {
     input {
       flex: 1;
       padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-style: solid;
+      border-width: 10px;
+      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
       font-size: 1rem;
 
       &:disabled {
@@ -438,8 +445,9 @@ onMounted(() => {
       padding: 8px 20px;
       background: #FF942B;
       color: #fff;
-      border: none;
-      border-radius: 8px;
+      border-style: solid;
+      border-width: 10px;
+      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
@@ -458,7 +466,9 @@ onMounted(() => {
   .guess-result {
     margin-top: 12px;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-style: solid;
+    border-width: 10px;
+    border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
     font-weight: bold;
 
     &.correct {
