@@ -38,9 +38,11 @@ import { RouterLink } from 'vue-router'
     display: flex;
     flex-direction: column;
     gap: 16px;
-    border-radius: 12px;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     margin: 0 16px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 10px;
+    border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
   }
 }
 .article-preview {
@@ -48,8 +50,6 @@ import { RouterLink } from 'vue-router'
   flex-direction: column;
   gap: 8px;
   padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
   &:hover {
     background-color: rgba(255, 148, 43, 0.05);
   }
