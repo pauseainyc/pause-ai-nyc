@@ -44,11 +44,10 @@
 }
 
 .content-box {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid #ddd;
-  border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 10px;
+  border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
 }
 p {
   color: #333;
