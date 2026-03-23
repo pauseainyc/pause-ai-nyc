@@ -4,7 +4,7 @@
       <div class="section-heading">{{ article.title }}</div>
       <div class="article-meta">By {{ article.author }} · {{ formattedDate }}</div>
       <div class="section-content">
-        <p v-for="(paragraph, i) in paragraphs" :key="i">{{ paragraph }}</p>
+        <p v-for="(paragraph, i) in paragraphs" :key="i" v-html="formatText(paragraph)"></p>
       </div>
       <RouterLink class="back-link" to="/blog">&larr; Back to Members Blog</RouterLink>
     </div>
@@ -18,6 +18,10 @@ import { blogArticles } from '@/data/blogArticles'
 const article = blogArticles.find(a => a.slug === 'calling-all-members')!
 const paragraphs = article.content.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
 const formattedDate = new Date(article.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+
+function formatText(text: string): string {
+  return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+}
 </script>
 
 <style scoped lang="scss">
