@@ -1,9 +1,9 @@
 <template>
   <div id="blog-article">
     <div class="section">
-      <div class="section-heading">Calling All Members: We Want to Hear Your Voice!</div>
+      <div class="section-heading">{{ article.title }}</div>
       <div class="section-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus, nec gravida arcu fermentum sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+        <p v-for="(paragraph, i) in paragraphs" :key="i">{{ paragraph }}</p>
       </div>
       <RouterLink class="back-link" to="/blog">&larr; Back to Members Blog</RouterLink>
     </div>
@@ -12,6 +12,10 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { blogArticles } from '@/data/blogArticles'
+
+const article = blogArticles.find(a => a.slug === 'calling-all-members')!
+const paragraphs = article.content.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
 </script>
 
 <style scoped lang="scss">

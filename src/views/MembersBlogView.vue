@@ -3,9 +3,9 @@
     <div class="section">
       <div class="section-heading">Members Blog</div>
       <div class="section-content">
-        <div class="article-preview">
-          <RouterLink class="article-title" to="/blog/calling-all-members">Calling All Members: We Want to Hear Your Voice!</RouterLink>
-          <p class="article-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...</p>
+        <div v-for="article in blogArticles" :key="article.slug" class="article-preview">
+          <RouterLink class="article-title" :to="`/blog/${article.slug}`">{{ article.title }}</RouterLink>
+          <p class="article-excerpt">{{ getExcerpt(article.content) }}</p>
         </div>
       </div>
     </div>
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { blogArticles, getExcerpt } from '@/data/blogArticles'
 </script>
 
 <style scoped lang="scss">
