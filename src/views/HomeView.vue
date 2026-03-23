@@ -7,7 +7,7 @@
     <div class="home-section" id="learn-more">
       <div class="home-section-heading">Or, learn more about our cause</div>
       <div class="content-box">
-        <p>Pause AI NYC is a regional chapter of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">Pause AI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
+        <p>PauseAI NYC is a regional group of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">PauseAI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
         <p class="proposal">
           <strong>Our proposal is simple:</strong><br>
           Don't build powerful AI systems until we know how to keep them safe. Pause AI.
