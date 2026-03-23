@@ -5,6 +5,7 @@
       <div class="section-content">
         <div v-for="article in blogArticles" :key="article.slug" class="article-preview">
           <RouterLink class="article-title" :to="`/blog/${article.slug}`">{{ article.title }}</RouterLink>
+          <span class="article-meta">By {{ article.author }} · {{ new Date(article.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}</span>
           <p class="article-excerpt">{{ getExcerpt(article.content) }}</p>
         </div>
       </div>
@@ -57,6 +58,10 @@ import { blogArticles, getExcerpt } from '@/data/blogArticles'
   .article-title {
     font-size: 18px;
     font-weight: bold;
+  }
+  .article-meta {
+    font-size: 13px;
+    color: #888;
   }
   .article-excerpt {
     font-size: 14px;

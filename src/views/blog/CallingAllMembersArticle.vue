@@ -2,6 +2,7 @@
   <div id="blog-article">
     <div class="section">
       <div class="section-heading">{{ article.title }}</div>
+      <div class="article-meta">By {{ article.author }} · {{ formattedDate }}</div>
       <div class="section-content">
         <p v-for="(paragraph, i) in paragraphs" :key="i">{{ paragraph }}</p>
       </div>
@@ -16,6 +17,7 @@ import { blogArticles } from '@/data/blogArticles'
 
 const article = blogArticles.find(a => a.slug === 'calling-all-members')!
 const paragraphs = article.content.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+const formattedDate = new Date(article.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +37,11 @@ const paragraphs = article.content.split(/\n\s*\n/).map(p => p.trim()).filter(Bo
   margin-bottom: 16px;
   .section-heading {
     font-size: 24px;
+  }
+  .article-meta {
+    font-size: 14px;
+    color: #666;
+    margin: 0 16px;
   }
   .section-content {
     display: flex;
