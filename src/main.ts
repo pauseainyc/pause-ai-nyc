@@ -5,10 +5,10 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import clickOutside from '@/directives/clickOutside'
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+createApp(App)
+.use(createPinia())
+.use(router)
+.directive('click-outside', clickOutside)
+.mount('#app')
