@@ -1,30 +1,40 @@
 <template>
   <header>
     <div class="header-logo-container">
-      <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo" />
+      <img class="header-logo" src="@/assets/pauseai_nyc_logo_full.svg" alt="Pause AI NYC logo"/>
     </div>
     <div class="header-nav-desktop">
-      <nav class="header-nav">
+      <nav class="header-nav-desktop-links">
         <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
         <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
       </nav>
-      <div id="social-media-icons">
-        <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
+      <div class="header-nav-desktop-icons">
+        <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
           <svg>
             <use :href="`/icons/${icon.svg}.svg#logo`"></use>
           </svg>
         </a>
       </div>
     </div>
-    <button class="header-nav-mobile-toggle" @click="toggleMobileNav()">Burg</button>
-    <div v-if="showMobileNav" class="header-nav-mobile">
-      <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
-      <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
-      <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" :alt="icon.name" :title="icon.name">
+    <div class="header-nav-mobile" v-click-outside="hideMobileNav">
+      <button class="header-nav-mobile-toggle" :class="showMobileNav ? 'toggle-active' : ''" @click="toggleMobileNav()">
         <svg>
-          <use :href="`/icons/${icon.svg}.svg#logo`"></use>
+          <use :href="`/icons/bars.svg`"></use>
         </svg>
-      </a>
+      </button>
+      <div v-if="showMobileNav" class="header-nav-mobile-menu">
+        <RouterLink class="header-nav-link" to="/" @click="hideMobileNav()">HOME</RouterLink>
+        <hr>
+        <RouterLink class="header-nav-link" to="/about" @click="hideMobileNav()">ABOUT US</RouterLink>
+        <hr>
+        <div class="header-nav-mobile-icons">
+          <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
+            <svg>
+              <use :href="`/icons/${icon.svg}.svg`"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
   <div id="router-view-container">
@@ -53,103 +63,136 @@ const showMobileNav = ref(false)
 const toggleMobileNav = () => {
   showMobileNav.value = !showMobileNav.value
 }
+const hideMobileNav = () => {
+  showMobileNav.value = false;
+}
 </script>
 
 <style scoped lang="scss">
-
 header {
-  position: fixed; 
+  position: fixed;
   top: 0;
-  width: 100vw;
-  background-color: white;
-
-  display: flex; 
-  align-items: center;
-  justify-content: left;
-
+  left: 0;
+  z-index: 1000 !important;
+  width: 100%;
   height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px;
+  background: white;
   border-bottom: 2px solid black;
-  // opacity: 0.9;
-}
-
-.header-nav-desktop {
-  background: red;
-}
-.header-nav-mobile-toggle {
-  background: yellow;
-  width: 50px;
-  height: 50px;
-  display: none;
-}
-.header-nav-mobile {
-  background: blue;
-  display: none;
 }
 
 .header-logo-container {
-  height: 64px;
-  margin: 0px 32px;
+  margin-right: 32px;
   .header-logo {
     height: 100%;
-    margin: auto;
   }
 }
 
-.header-nav {
-  nav {
-    display: flex; 
-  }
-  a {
-    font-weight: 900;
-    letter-spacing: 0.3px;
-    background-color: #FF942B;
-    color: black;
-    border-radius: 4px;
-    padding: 8px 16px;
-    margin: 8px;
-  }
-  a:hover { background: none; }
-
-  .router-link-active {
-    color: #FF942B;
-    background-color: black;
-
-    &:hover {
+.header-nav-desktop {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  .header-nav-desktop-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    a.header-nav-link {
+      height: 32px;
+      font-weight: bold;
+      color: black;
+      background: #FF942B;
+      padding: 4px 8px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      margin-bottom: 1px;
+      &:hover {
+        filter: brightness(0.95)
+      }
+    }
+    a.router-link-active {
       color: #FF942B;
-      background-color: black;
+      background: black;
+      border-bottom: none;
+      margin-bottom: unset;
     }
   }
-}
-
-.router-link-active {
-  &:hover {
-    background: none;
+  .header-nav-desktop-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 }
 
-#social-media-icons {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  margin-right: 32px;
-  margin-left: auto;
+.social-media-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  border-radius: 25%;
+  padding: 8px;
+  background: none;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  &:hover {
+    background: rgba(255, 148, 43, 0.2);
+  }
+}
 
-  .social-media-icon {
-    display: block;
-    width: 32px;
-    height: 32px;
-    text-decoration: none;
-    border-radius: 50%;
-    padding: 4px;
+.header-nav-mobile {
+  display: none;
+  .header-nav-mobile-toggle {
+    background: none;
+    display: none;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 25%;
+    cursor: pointer;
     svg {
       width: 24px;
       height: 24px;
     }
+    &.toggle-active {
+      border: 2px solid black;
+    }
     &:hover {
-      svg {
-        fill: #FF942B;
+      background: rgba(0,0,0,0.05);
+    }
+  }
+  .header-nav-mobile-menu {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 8px;
+    border-bottom: 2px solid black;
+    a.header-nav-link {
+      height: 32px;
+      font-weight: bold;
+      color: black;
+      border-radius: 4px;
+      padding: 4px 8px;
+      &:hover {
+        filter: brightness(0.95)
       }
     }
+    a.router-link-active {
+      color: #FF942B;
+    }
+  }
+  .header-nav-mobile-icons {
+    width: 100%;
+    display: flex;
+    gap: 8px;
   }
 }
 
@@ -161,7 +204,6 @@ header {
 footer {
   display: flex;
   flex-direction: column;
-
   .skyline-img-container {
     margin: auto;
     img {
@@ -169,7 +211,6 @@ footer {
       width: auto;
     }
   }
-
   #copyright-statement {
     font-weight: bold;
     padding: 8px;
@@ -177,21 +218,25 @@ footer {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
+  header {
+    padding: 8px;
+    height: 60px;
+  }
+  .header-logo-container {
+    margin-right: 16px;
+  }
   .header-nav-desktop {
     display: none;
-
   }
   .header-nav-mobile {
-    display: block !important;
-  }
-  .header-nav-mobile-toggle {
-    display: block !important;
-  }
-  .header-logo {
-    height: unset;
-    max-height: 100px;
-    width: 100%;
+    display: inherit;
+    .header-nav-mobile-menu {
+      top: 60px;
+    }
+    .header-nav-mobile-toggle {
+      display: flex !important;
+    }
   }
   #router-view-container {
     padding: 20px;
