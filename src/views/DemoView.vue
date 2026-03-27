@@ -21,7 +21,7 @@
     </div>
 
     <div v-if="selectedCharacter" class="description-area content-box">
-      <img :src="wizardPortrait" alt="Character portrait" class="character-portrait" />
+      <img :src="portraitSrc" alt="Character portrait" class="character-portrait" />
       <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
       <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
       <p>{{ selectedCharacter.description }}</p>
@@ -29,7 +29,11 @@
     </div>
 
     <div class="chat-section content-box">
-      <img :src="chatWizardSrc" alt="Wizard" class="chat-wizard" />
+      <div class="wizard-area">
+        <div v-if="showCorrectGuess" class="correct-guess-banner">You guessed correct!</div>
+        <div v-else-if="loading" class="correct-guess-banner">thinking...</div>
+        <img :src="chatWizardSrc" alt="Wizard" class="chat-wizard" />
+      </div>
       <h2>Chat</h2>
       <div class="chat-messages" ref="chatMessagesEl">
         <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
@@ -73,7 +77,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick } from 'vue'
-import wizardPortrait from '@/assets/demo/wizard-portrait.gif'
+import wizardPortraitAnimated from '@/assets/demo/wizard-portrait.gif'
+import wizardPortraitTame from '@/assets/demo/wizard-portrait-tame.gif'
 import wizardDefault from '@/assets/demo/wizard-default.gif'
 import wizardThinking from '@/assets/demo/wizard-thinking.gif'
 import wizardImpatient from '@/assets/demo/wizard-impatient.gif'
@@ -101,6 +106,8 @@ const loading = ref(false)
 const guessResult = ref<{ correct: boolean; message: string } | null>(null)
 const chatMessagesEl = ref<HTMLElement | null>(null)
 const usedPrompts = new Set<string>()
+const showCorrectGuess = ref(false)
+const portraitSrc = ref(wizardPortraitAnimated)
 const chatWizardSrc = ref(wizardDefault)
 let wizardResetTimer: ReturnType<typeof setTimeout> | null = null
 let idleTimer: ReturnType<typeof setTimeout> | null = null
@@ -214,6 +221,7 @@ async function sendChat() {
   chatInput.value = prompt
   chatMessages.value = [{ role: 'user', text: prompt }]
   loading.value = true
+  portraitSrc.value = wizardPortraitTame
   if (wizardResetTimer) clearTimeout(wizardResetTimer)
   if (idleTimer) clearTimeout(idleTimer)
   chatWizardSrc.value = wizardThinking
@@ -257,8 +265,10 @@ async function submitGuess() {
       if (idleTimer) clearTimeout(idleTimer)
       if (wizardResetTimer) clearTimeout(wizardResetTimer)
       chatWizardSrc.value = wizardWin
+      showCorrectGuess.value = true
       wizardResetTimer = setTimeout(() => {
         chatWizardSrc.value = wizardDefault
+        showCorrectGuess.value = false
         resetIdleTimer()
       }, 10000)
       loadCharacters().then(() => {
@@ -371,12 +381,26 @@ onMounted(() => {
 .chat-section {
   position: relative;
 
-  .chat-wizard {
+  .wizard-area {
     position: absolute;
     top: -6px;
     right: -36px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .chat-wizard {
     width: 120px;
     height: auto;
+  }
+
+  .correct-guess-banner {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #0d0d0d;
+    white-space: nowrap;
+    margin-top: -40px;
   }
 
   h2 {
