@@ -77,6 +77,7 @@ import wizardPortrait from '@/assets/demo/wizard-portrait.gif'
 import wizardDefault from '@/assets/demo/wizard-default.gif'
 import wizardThinking from '@/assets/demo/wizard-thinking.gif'
 import wizardImpatient from '@/assets/demo/wizard-impatient.gif'
+import wizardWin from '@/assets/demo/wizard-win.gif'
 
 interface CharacterOut {
   id: string
@@ -253,11 +254,19 @@ async function submitGuess() {
     const data = await res.json()
     guessResult.value = { correct: data.correct, message: data.message }
     if (data.correct) {
-      await loadCharacters()
-      const char = selectedCharacter.value
-      if (char && selectedLevel.value === char.current_level - 1) {
-        selectedLevel.value = char.current_level
-      }
+      if (idleTimer) clearTimeout(idleTimer)
+      if (wizardResetTimer) clearTimeout(wizardResetTimer)
+      chatWizardSrc.value = wizardWin
+      wizardResetTimer = setTimeout(() => {
+        chatWizardSrc.value = wizardDefault
+        resetIdleTimer()
+      }, 10000)
+      loadCharacters().then(() => {
+        const char = selectedCharacter.value
+        if (char && selectedLevel.value === char.current_level - 1) {
+          selectedLevel.value = char.current_level
+        }
+      })
     }
   } catch (e) {
     guessResult.value = { correct: false, message: 'Error: failed to submit guess.' }
