@@ -21,7 +21,7 @@
     </div>
 
     <div v-if="selectedCharacter" class="description-area content-box">
-      <img :src="portraitSrc" alt="Character portrait" class="character-portrait" />
+      <img v-if="portraitSrc" :src="portraitSrc" alt="" class="character-portrait" />
       <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
       <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
       <p>{{ selectedCharacter.description }}</p>
@@ -32,7 +32,7 @@
       <div class="wizard-area">
         <div v-if="showCorrectGuess" class="correct-guess-banner">You guessed correct!</div>
         <div v-else-if="loading" class="correct-guess-banner">thinking...</div>
-        <img :src="chatWizardSrc" alt="Wizard" class="chat-wizard" />
+        <img v-if="chatWizardSrc" :src="chatWizardSrc" alt="" class="chat-wizard" />
       </div>
       <h2>Chat</h2>
       <div class="chat-messages" ref="chatMessagesEl">
@@ -84,6 +84,45 @@ import wizardThinking from '@/assets/demo/wizard-thinking.gif'
 import wizardImpatient from '@/assets/demo/wizard-impatient.gif'
 import wizardWin from '@/assets/demo/wizard-win.gif'
 
+import nuclearPortraitAnimated from '@/assets/demo/nuclear/nuclear-portrait.gif'
+import nuclearPortraitTame from '@/assets/demo/nuclear/nuclear-portrait-tame.gif'
+import nuclearDefault from '@/assets/demo/nuclear/nuclear-default.gif'
+import nuclearThinking from '@/assets/demo/nuclear/nuclear-thinking.gif'
+import nuclearImpatient from '@/assets/demo/nuclear/nuclear-impatient.gif'
+import nuclearWin from '@/assets/demo/nuclear/nuclear-win.gif'
+
+interface CharacterAssets {
+  portraitAnimated: string
+  portraitTame: string
+  default: string
+  thinking: string
+  impatient: string
+  win: string
+}
+
+const CHARACTER_ASSETS: Record<string, CharacterAssets> = {
+  wizard: {
+    portraitAnimated: wizardPortraitAnimated,
+    portraitTame: wizardPortraitTame,
+    default: wizardDefault,
+    thinking: wizardThinking,
+    impatient: wizardImpatient,
+    win: wizardWin,
+  },
+  nuclearcodes: {
+    portraitAnimated: nuclearPortraitAnimated,
+    portraitTame: nuclearPortraitTame,
+    default: nuclearDefault,
+    thinking: nuclearThinking,
+    impatient: nuclearImpatient,
+    win: nuclearWin,
+  },
+}
+
+function getAssets(): CharacterAssets {
+  return CHARACTER_ASSETS[selectedCharId.value] ?? CHARACTER_ASSETS.wizard
+}
+
 interface CharacterOut {
   id: string
   name: string
@@ -107,19 +146,19 @@ const guessResult = ref<{ correct: boolean; message: string } | null>(null)
 const chatMessagesEl = ref<HTMLElement | null>(null)
 const usedPrompts = new Set<string>()
 const showCorrectGuess = ref(false)
-const portraitSrc = ref(wizardPortraitAnimated)
-const chatWizardSrc = ref(wizardDefault)
+const portraitSrc = ref('')
+const chatWizardSrc = ref('')
 let wizardResetTimer: ReturnType<typeof setTimeout> | null = null
 let idleTimer: ReturnType<typeof setTimeout> | null = null
 
 function resetIdleTimer() {
   if (idleTimer) clearTimeout(idleTimer)
   idleTimer = setTimeout(() => {
-    if (chatWizardSrc.value === wizardDefault) {
-      chatWizardSrc.value = wizardImpatient
+    if (chatWizardSrc.value === getAssets().default) {
+      chatWizardSrc.value = getAssets().impatient
       setTimeout(() => {
-        if (chatWizardSrc.value === wizardImpatient) {
-          chatWizardSrc.value = wizardDefault
+        if (chatWizardSrc.value === getAssets().impatient) {
+          chatWizardSrc.value = getAssets().default
         }
         resetIdleTimer()
       }, 6000)
@@ -188,6 +227,9 @@ function onCharacterChange() {
   chatInput.value = ''
   guessInput.value = ''
   lastPrompt.value = ''
+  portraitSrc.value = getAssets().portraitAnimated
+  chatWizardSrc.value = getAssets().default
+  resetIdleTimer()
 }
 
 function onLevelChange() {
@@ -221,10 +263,10 @@ async function sendChat() {
   chatInput.value = prompt
   chatMessages.value = [{ role: 'user', text: prompt }]
   loading.value = true
-  portraitSrc.value = wizardPortraitTame
+  portraitSrc.value = getAssets().portraitTame
   if (wizardResetTimer) clearTimeout(wizardResetTimer)
   if (idleTimer) clearTimeout(idleTimer)
-  chatWizardSrc.value = wizardThinking
+  chatWizardSrc.value = getAssets().thinking
   await scrollToBottom()
 
   try {
@@ -239,7 +281,7 @@ async function sendChat() {
   } finally {
     loading.value = false
     wizardResetTimer = setTimeout(() => {
-      chatWizardSrc.value = wizardDefault
+      chatWizardSrc.value = getAssets().default
       resetIdleTimer()
     }, 8000)
     await scrollToBottom()
@@ -264,10 +306,10 @@ async function submitGuess() {
     if (data.correct) {
       if (idleTimer) clearTimeout(idleTimer)
       if (wizardResetTimer) clearTimeout(wizardResetTimer)
-      chatWizardSrc.value = wizardWin
+      chatWizardSrc.value = getAssets().win
       showCorrectGuess.value = true
       wizardResetTimer = setTimeout(() => {
-        chatWizardSrc.value = wizardDefault
+        chatWizardSrc.value = getAssets().default
         showCorrectGuess.value = false
         resetIdleTimer()
       }, 10000)
