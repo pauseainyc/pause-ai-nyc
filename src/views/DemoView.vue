@@ -29,7 +29,7 @@
     </div>
 
     <div class="chat-section content-box">
-      <img :src="wizardDefault" alt="Wizard" class="chat-wizard" />
+      <img :src="chatWizardSrc" alt="Wizard" class="chat-wizard" />
       <h2>Chat</h2>
       <div class="chat-messages" ref="chatMessagesEl">
         <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
@@ -75,6 +75,8 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
 import wizardPortrait from '@/assets/demo/wizard-portrait.gif'
 import wizardDefault from '@/assets/demo/wizard-default.gif'
+import wizardThinking from '@/assets/demo/wizard-thinking.gif'
+import wizardImpatient from '@/assets/demo/wizard-impatient.gif'
 
 interface CharacterOut {
   id: string
@@ -98,6 +100,26 @@ const loading = ref(false)
 const guessResult = ref<{ correct: boolean; message: string } | null>(null)
 const chatMessagesEl = ref<HTMLElement | null>(null)
 const usedPrompts = new Set<string>()
+const chatWizardSrc = ref(wizardDefault)
+let wizardResetTimer: ReturnType<typeof setTimeout> | null = null
+let idleTimer: ReturnType<typeof setTimeout> | null = null
+
+function resetIdleTimer() {
+  if (idleTimer) clearTimeout(idleTimer)
+  idleTimer = setTimeout(() => {
+    if (chatWizardSrc.value === wizardDefault) {
+      chatWizardSrc.value = wizardImpatient
+      setTimeout(() => {
+        if (chatWizardSrc.value === wizardImpatient) {
+          chatWizardSrc.value = wizardDefault
+        }
+        resetIdleTimer()
+      }, 6000)
+    } else {
+      resetIdleTimer()
+    }
+  }, 12000)
+}
 
 const selectedCharacter = computed(() =>
   characters.value.find((c) => c.id === selectedCharId.value) ?? null,
@@ -191,6 +213,9 @@ async function sendChat() {
   chatInput.value = prompt
   chatMessages.value = [{ role: 'user', text: prompt }]
   loading.value = true
+  if (wizardResetTimer) clearTimeout(wizardResetTimer)
+  if (idleTimer) clearTimeout(idleTimer)
+  chatWizardSrc.value = wizardThinking
   await scrollToBottom()
 
   try {
@@ -204,6 +229,10 @@ async function sendChat() {
     chatMessages.value.push({ role: 'assistant', text: 'Error: failed to get response.' })
   } finally {
     loading.value = false
+    wizardResetTimer = setTimeout(() => {
+      chatWizardSrc.value = wizardDefault
+      resetIdleTimer()
+    }, 8000)
     await scrollToBottom()
   }
 }
@@ -214,6 +243,7 @@ async function submitGuess() {
 
   loading.value = true
   guessResult.value = null
+  resetIdleTimer()
 
   try {
     const res = await apiFetch('/api/guess', {
@@ -239,6 +269,7 @@ async function submitGuess() {
 
 onMounted(() => {
   loadCharacters()
+  resetIdleTimer()
 })
 </script>
 
