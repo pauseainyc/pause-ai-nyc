@@ -21,6 +21,7 @@
     </div>
 
     <div v-if="selectedCharacter" class="description-area content-box">
+      <img :src="wizardPortrait" alt="Character portrait" class="character-portrait" />
       <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
       <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
       <p>{{ selectedCharacter.description }}</p>
@@ -71,6 +72,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick } from 'vue'
+import wizardPortrait from '@/assets/demo/wizard-portrait.gif'
 
 interface CharacterOut {
   id: string
@@ -293,6 +295,13 @@ onMounted(() => {
 }
 
 .description-area {
+  .character-portrait {
+    float: right;
+    width: 100px;
+    height: auto;
+    margin: 0 0 8px 12px;
+  }
+
   p {
     margin: 8px 0 0;
     line-height: 1.6;
