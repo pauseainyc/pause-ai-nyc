@@ -29,6 +29,7 @@
     </div>
 
     <div class="chat-section content-box">
+      <img :src="wizardDefault" alt="Wizard" class="chat-wizard" />
       <h2>Chat</h2>
       <div class="chat-messages" ref="chatMessagesEl">
         <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
@@ -73,6 +74,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick } from 'vue'
 import wizardPortrait from '@/assets/demo/wizard-portrait.gif'
+import wizardDefault from '@/assets/demo/wizard-default.gif'
 
 interface CharacterOut {
   id: string
@@ -327,6 +329,16 @@ onMounted(() => {
 }
 
 .chat-section {
+  position: relative;
+
+  .chat-wizard {
+    position: absolute;
+    top: -6px;
+    right: -36px;
+    width: 120px;
+    height: auto;
+  }
+
   h2 {
     margin: 0 0 12px;
     font-size: 1.2rem;
