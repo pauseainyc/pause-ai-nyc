@@ -10,17 +10,13 @@
       </nav>
       <div class="header-nav-desktop-icons">
         <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
-          <svg>
-            <use :href="`/icons/${icon.svg}.svg#logo`"></use>
-          </svg>
+          <img :src="`/icons/${icon.svg}.svg`">
         </a>
       </div>
     </div>
     <div class="header-nav-mobile" v-click-outside="hideMobileNav">
       <button class="header-nav-mobile-toggle" :class="showMobileNav ? 'toggle-active' : ''" @click="toggleMobileNav()">
-        <svg>
-          <use :href="`/icons/bars.svg`"></use>
-        </svg>
+        <img src="/icons/bars.svg">
       </button>
       <div v-if="showMobileNav" class="header-nav-mobile-menu">
         <RouterLink class="header-nav-link" to="/" @click="hideMobileNav()">HOME</RouterLink>
@@ -29,9 +25,7 @@
         <hr>
         <div class="header-nav-mobile-icons">
           <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
-            <svg>
-              <use :href="`/icons/${icon.svg}.svg`"></use>
-            </svg>
+            <img :src="`/icons/${icon.svg}.svg`">
           </a>
         </div>
       </div>
@@ -85,8 +79,10 @@ header {
 
 .header-logo-container {
   margin-right: 32px;
+  aspect-ratio: 23/5;
   .header-logo {
     height: 100%;
+    width: 100%;
   }
 }
 
@@ -154,9 +150,9 @@ header {
     border: none;
     border-radius: 25%;
     cursor: pointer;
-    svg {
-      width: 24px;
-      height: 24px;
+    img {
+      width: 32px;
+      height: 32px;
     }
     &.toggle-active {
       border: 2px solid black;
@@ -218,7 +214,7 @@ footer {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   header {
     padding: 8px;
     height: 60px;
@@ -239,6 +235,7 @@ footer {
     }
   }
   #router-view-container {
+    margin-top: 60px;
     padding: 20px;
   }
 }
