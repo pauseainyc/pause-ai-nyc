@@ -1,6 +1,6 @@
 <template>
   <div id="about">
-    <div class="section">
+    <div class="section" id="about-us">
       <div class="section-heading">About Us</div>
       <div class="section-content">
         <p>Welcome to our site! We are so excited for you to be here, and we have so much to tell you about!</p>
@@ -9,7 +9,7 @@
         <p>Our local group is growing quickly, and we would love to see you join us if you're in the area.</p>
       </div>
     </div>
-    <div class="section">
+    <div class="section" id="what-we-do">
       <div class="section-heading">What We Do</div>
       <div class="section-content">
         <p>We discuss and advocate for AI safety at multiple levels. We have group discussions at our general meetings, call our representatives, and canvas on the streets of NYC! We advocate for a global treaty on AI development, along with domestic state and federal-level legislation that promotes safety in the AI industry. We actually got a win recently at the NY state level with the recent passage of the <a href="https://www.nysenate.gov/legislation/bills/2025/A6453/amendment/A">RAISE Act</a> (sponsored by <a href="https://www.nytimes.com/2025/10/20/nyregion/alex-bores-ny-congress-primary.html">current congressional candidate Alex Bores</a>). This bill, while weaker than we would have hoped, serves as a huge milestone for AI regulation in the USA, being only the second bill of its kind nationwide (the other one being the <a href="https://legiscan.com/CA/text/SB53/id/3041703">California bill SB 53</a>). Our NYC group made hundreds of phone calls to the governor's office to move the needle and make that possible. If you want to make <i>real</i> change on this issue, we are the group to join.</p>
@@ -22,7 +22,7 @@
         <p>But don't worry, the weather is getting warmer and we are going to be out <i>every week</i>, and I wanna see <i>you</i> there, too!</p>
       </div>
     </div>
-    <div class="section">
+    <div class="section" id="fun-photos">
       <div class="section-heading">Additional fun photos!</div>
       <div class="section-content">
         <p>Here is us getting pizza:</p>
@@ -69,7 +69,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .section {
     .section-heading {
       font-size: 18px;

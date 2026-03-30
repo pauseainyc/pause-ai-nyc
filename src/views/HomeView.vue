@@ -1,10 +1,10 @@
 <template>
   <div id="home">
-    <div class="home-section">
+    <div class="home-section" id="get-involved">
       <div class="home-section-heading">Get involved!</div>
       <LinkTree/>
     </div>
-    <div class="home-section">
+    <div class="home-section" id="learn-more">
       <div class="home-section-heading">Or, learn more about our cause</div>
       <div class="content-box">
         <p>Pause AI NYC is a regional chapter of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">Pause AI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
@@ -64,7 +64,7 @@ p {
   font-weight: 600;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .home-section {
     .home-section-heading {
       font-size: 18px;
