@@ -54,7 +54,7 @@
           @keydown.enter.exact.prevent="sendChat"
         ></textarea>
         <button type="submit" :disabled="loading || !selectedCharId || (!chatInput.trim() && !lastPrompt)">
-          {{ loading ? 'Sending…' : 'Send' }}
+          {{ loading ? '…' : '>' }}
         </button>
       </form>
       <div v-if="duplicateWarning" class="duplicate-warning">{{ duplicateWarning }}</div>
@@ -69,7 +69,7 @@
           placeholder="Enter your guess…"
           :disabled="loading || !selectedCharId"
         />
-        <button type="submit" :disabled="loading || !selectedCharId || !guessInput.trim()">Submit</button>
+        <button type="submit" :disabled="loading || !selectedCharId || !guessInput.trim()">&gt;</button>
       </form>
       <div v-if="guessResult" :class="['guess-result', guessResult.correct ? 'correct' : 'incorrect']">
         {{ guessResult.message }}
@@ -516,6 +516,7 @@ onMounted(() => {
 
     textarea {
       flex: 1;
+      min-width: 0;
       padding: 8px 12px;
       border-style: solid;
       border-width: 10px;
@@ -577,6 +578,7 @@ onMounted(() => {
 
     input {
       flex: 1;
+      min-width: 0;
       padding: 8px 12px;
       border-style: solid;
       border-width: 10px;
