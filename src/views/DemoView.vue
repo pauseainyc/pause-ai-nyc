@@ -22,8 +22,11 @@
 
     <div v-if="selectedCharacter" class="description-area content-box">
       <img v-if="portraitSrc" :src="portraitSrc" alt="" class="character-portrait" />
-      <strong>{{ selectedCharacter.name }}</strong> — Level {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }}
+      <strong>{{ selectedCharacter.name }}</strong> — {{ selectedCharacter.current_level }} / {{ selectedCharacter.total_levels }} levels completed
       <span v-if="selectedCharacter.completed" class="badge-completed">Completed</span>
+      <div class="progress-bar">
+        <div class="progress-fill" :style="{ width: (selectedCharacter.current_level / selectedCharacter.total_levels) * 100 + '%' }"></div>
+      </div>
       <p>{{ selectedCharacter.description }}</p>
       <p v-if="currentLevelDesc" class="level-desc">{{ currentLevelDesc }}</p>
     </div>
@@ -418,6 +421,22 @@ onMounted(() => {
     border-radius: 12px;
     margin-left: 8px;
     font-weight: bold;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #FF942B;
+    border-radius: 4px;
+    transition: width 0.4s ease;
   }
 }
 
