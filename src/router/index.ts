@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import RedirectView from '@/views/RedirectView.vue'
+import MembersBlogView from '@/views/MembersBlogView.vue'
+import CallingAllMembersArticle from '@/views/blog/CallingAllMembersArticle.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +17,16 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView,
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: MembersBlogView,
+    },
+    {
+      path: '/blog/calling-all-members',
+      name: 'calling-all-members',
+      component: CallingAllMembersArticle,
     },
     {
       path: '/qr0',

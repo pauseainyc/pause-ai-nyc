@@ -7,7 +7,7 @@
     <div class="home-section" id="learn-more">
       <div class="home-section-heading">Or, learn more about our cause</div>
       <div class="content-box">
-        <p>Pause AI NYC is a regional chapter of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">Pause AI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
+        <p>PauseAI NYC is a regional group of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">PauseAI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
         <p class="proposal">
           <strong>Our proposal is simple:</strong><br>
           Don't build powerful AI systems until we know how to keep them safe. Pause AI.
@@ -44,11 +44,12 @@
 }
 
 .content-box {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid #ddd;
-  border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 10px;
+  border-image: url(/border-large.svg) 10 10 10 10 stretch stretch;
+  background: white;
+  border-radius: 10px;
 }
 p {
   color: #333;

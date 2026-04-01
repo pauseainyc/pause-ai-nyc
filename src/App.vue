@@ -7,6 +7,7 @@
       <nav class="header-nav-desktop-links">
         <RouterLink class="header-nav-link" to="/">HOME</RouterLink>
         <RouterLink class="header-nav-link" to="/about">ABOUT US</RouterLink>
+        <RouterLink class="header-nav-link" to="/blog">BLOG</RouterLink>
       </nav>
       <div class="header-nav-desktop-icons">
         <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
@@ -22,6 +23,8 @@
         <RouterLink class="header-nav-link" to="/" @click="hideMobileNav()">HOME</RouterLink>
         <hr>
         <RouterLink class="header-nav-link" to="/about" @click="hideMobileNav()">ABOUT US</RouterLink>
+        <hr>
+        <RouterLink class="header-nav-link" to="/blog" @click="hideMobileNav()">BLOG</RouterLink>
         <hr>
         <div class="header-nav-mobile-icons">
           <a v-for="icon in socialMediaIcons" class="social-media-icon" :href="icon.url" target="_blank" :alt="icon.name" :title="icon.name">
