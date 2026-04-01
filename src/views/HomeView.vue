@@ -47,7 +47,9 @@
   padding: 32px;
   border-style: solid;
   border-width: 10px;
-  border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
+  border-image: url(/border-large.svg) 10 10 10 10 stretch stretch;
+  background: white;
+  border-radius: 10px;
 }
 p {
   color: #333;
