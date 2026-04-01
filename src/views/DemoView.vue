@@ -37,7 +37,10 @@
         <div v-else-if="loading" class="correct-guess-banner">thinking...</div>
         <img v-if="chatWizardSrc" :src="chatWizardSrc" alt="" class="chat-wizard" />
       </div>
-      <h2>Chat</h2>
+      <div class="chat-header">
+        <h2>Chat</h2>
+        <button class="clear-btn" @click="clearChat" :disabled="chatMessages.length === 0">Clear</button>
+      </div>
       <div class="chat-messages" ref="chatMessagesEl">
         <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
         <div v-for="(msg, i) in chatMessages" :key="i" :class="['chat-msg', msg.role]">
@@ -207,7 +210,7 @@ async function apiFetch(path: string, options: RequestInit = {}): Promise<Respon
   if (token) {
     headers['X-Session-Token'] = token
   }
-  const res = await fetch(API_BASE + path, { ...options, headers })
+  const res = await fetch(API_BASE + path, { ...options, headers, cache: 'no-store' })
   const returnedToken = res.headers.get('X-Session-Token')
   if (returnedToken) {
     saveToken(returnedToken)
@@ -251,6 +254,14 @@ async function scrollToBottom() {
 
 const duplicateWarning = ref('')
 
+function clearChat() {
+  chatMessages.value = []
+  lastPrompt.value = ''
+  chatInput.value = ''
+  duplicateWarning.value = ''
+  usedPrompts.clear()
+}
+
 async function sendChat() {
   const prompt = chatInput.value.trim() || lastPrompt.value
   if (!prompt || !selectedCharId.value) return
@@ -264,8 +275,12 @@ async function sendChat() {
   duplicateWarning.value = ''
 
   lastPrompt.value = prompt
-  chatInput.value = prompt
-  chatMessages.value = [{ role: 'user', text: prompt }]
+  chatInput.value = ''
+
+  // Build history from existing messages (excluding the new one)
+  const history = chatMessages.value.map((m) => ({ role: m.role, content: m.text }))
+
+  chatMessages.value.push({ role: 'user', text: prompt })
   loading.value = true
   portraitSrc.value = getAssets().portraitTame
   if (wizardResetTimer) clearTimeout(wizardResetTimer)
@@ -276,7 +291,12 @@ async function sendChat() {
   try {
     const res = await apiFetch('/api/chat', {
       method: 'POST',
-      body: JSON.stringify({ character_id: selectedCharId.value, prompt, level: selectedLevel.value }),
+      body: JSON.stringify({
+        character_id: selectedCharId.value,
+        prompt,
+        level: selectedLevel.value,
+        history,
+      }),
     })
     const data = await res.json()
     chatMessages.value.push({ role: 'assistant', text: data.reply })
@@ -465,9 +485,36 @@ onMounted(() => {
     margin-top: -40px;
   }
 
-  h2 {
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin: 0 0 12px;
-    font-size: 1.2rem;
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .clear-btn {
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      background: #e0e0e0;
+      color: #333;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        background: #ccc;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
   }
 
   .chat-messages {
