@@ -337,6 +337,7 @@ async function submitGuess() {
         showCorrectGuess.value = false
         resetIdleTimer()
       }, 10000)
+      clearChat()
       loadCharacters().then(() => {
         const char = selectedCharacter.value
         if (char && selectedLevel.value === char.current_level - 1) {
