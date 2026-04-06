@@ -227,6 +227,12 @@ async function loadCharacters() {
   }
 }
 
+function updatePortrait() {
+  const char = selectedCharacter.value
+  const isFinalLevel = char ? selectedLevel.value === char.total_levels - 1 : false
+  portraitSrc.value = isFinalLevel ? getAssets().portraitAnimated : getAssets().portraitTame
+}
+
 function onCharacterChange() {
   selectedLevel.value = selectedCharacter.value?.current_level ?? 0
   chatMessages.value = []
@@ -234,7 +240,7 @@ function onCharacterChange() {
   chatInput.value = ''
   guessInput.value = ''
   lastPrompt.value = ''
-  portraitSrc.value = getAssets().portraitAnimated
+  updatePortrait()
   chatWizardSrc.value = getAssets().default
   resetIdleTimer()
 }
@@ -243,6 +249,7 @@ function onLevelChange() {
   chatMessages.value = []
   guessResult.value = null
   lastPrompt.value = ''
+  updatePortrait()
 }
 
 async function scrollToBottom() {
@@ -304,6 +311,7 @@ async function sendChat() {
     chatMessages.value.push({ role: 'assistant', text: 'Error: failed to get response.' })
   } finally {
     loading.value = false
+    updatePortrait()
     wizardResetTimer = setTimeout(() => {
       chatWizardSrc.value = getAssets().default
       resetIdleTimer()
