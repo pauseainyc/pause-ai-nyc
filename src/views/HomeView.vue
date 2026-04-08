@@ -51,6 +51,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  iframe {
+    max-width: 100%;
+  }
 }
 .home-section {
   display: flex;
