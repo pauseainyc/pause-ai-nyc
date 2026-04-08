@@ -39,7 +39,6 @@
       </div>
       <div class="chat-header">
         <h2>Chat</h2>
-        <button class="clear-btn" @click="clearChat" :disabled="chatMessages.length === 0">Clear</button>
       </div>
       <div class="chat-messages" ref="chatMessagesEl">
         <div v-if="chatMessages.length === 0" class="chat-empty">Select a character and start chatting to extract the password.</div>
@@ -56,9 +55,12 @@
           rows="3"
           @keydown.enter.exact.prevent="sendChat"
         ></textarea>
-        <button type="submit" :disabled="loading || !selectedCharId || (!chatInput.trim() && !lastPrompt)">
-          {{ loading ? '…' : '>' }}
-        </button>
+        <div class="chat-buttons">
+          <button type="submit" :disabled="loading || !selectedCharId || (!chatInput.trim() && !lastPrompt)">
+            {{ loading ? '…' : '>' }}
+          </button>
+          <button type="button" class="clear-btn" @click="clearChat" :disabled="chatMessages.length === 0">clear</button>
+        </div>
       </form>
       <div v-if="duplicateWarning" class="duplicate-warning">{{ duplicateWarning }}</div>
     </div>
@@ -90,12 +92,9 @@ import wizardThinking from '@/assets/demo/wizard-thinking.gif'
 import wizardImpatient from '@/assets/demo/wizard-impatient.gif'
 import wizardWin from '@/assets/demo/wizard-win.gif'
 
-import nuclearPortraitAnimated from '@/assets/demo/nuclear/nuclear-portrait.gif'
-import nuclearPortraitTame from '@/assets/demo/nuclear/nuclear-portrait-tame.gif'
-import nuclearDefault from '@/assets/demo/nuclear/nuclear-default.gif'
-import nuclearThinking from '@/assets/demo/nuclear/nuclear-thinking.gif'
-import nuclearImpatient from '@/assets/demo/nuclear/nuclear-impatient.gif'
-import nuclearWin from '@/assets/demo/nuclear/nuclear-win.gif'
+import nuclearPortrait from '@/assets/demo/nuclear/nuclear-portrait.png'
+import nukeRealeyezStare from '@/assets/demo/nuclear/nuke-realeyez-stare.gif'
+import nukeRealeyezBlink from '@/assets/demo/nuclear/nuke-realeyez-blink.gif'
 
 interface CharacterAssets {
   portraitAnimated: string
@@ -116,12 +115,12 @@ const CHARACTER_ASSETS: Record<string, CharacterAssets> = {
     win: wizardWin,
   },
   nuclearcodes: {
-    portraitAnimated: nuclearPortraitAnimated,
-    portraitTame: nuclearPortraitTame,
-    default: nuclearDefault,
-    thinking: nuclearThinking,
-    impatient: nuclearImpatient,
-    win: nuclearWin,
+    portraitAnimated: nuclearPortrait,
+    portraitTame: nuclearPortrait,
+    default: nukeRealeyezStare,
+    thinking: nukeRealeyezBlink,
+    impatient: nukeRealeyezBlink,
+    win: nukeRealeyezBlink,
   },
 }
 
@@ -505,26 +504,6 @@ onMounted(() => {
       margin: 0;
       font-size: 1.2rem;
     }
-
-    .clear-btn {
-      padding: 2px 10px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      background: #e0e0e0;
-      color: #333;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      cursor: pointer;
-
-      &:hover:not(:disabled) {
-        background: #ccc;
-      }
-
-      &:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
-    }
   }
 
   .chat-messages {
@@ -588,25 +567,53 @@ onMounted(() => {
       }
     }
 
-    button {
-      padding: 8px 20px;
-      background: #FF942B;
-      color: #fff;
-      border-style: solid;
-      border-width: 10px;
-      border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      align-self: flex-end;
+    .chat-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
 
-      &:hover:not(:disabled) {
-        filter: brightness(90%);
+      button[type="submit"] {
+        padding: 8px 20px;
+        background: #FF942B;
+        color: #fff;
+        border-style: solid;
+        border-width: 10px;
+        border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 6px;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          filter: brightness(90%);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
 
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+      .clear-btn {
+        padding: 2px 12px;
+        font-size: 0.65rem;
+        font-weight: bold;
+        background: #e04040;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        line-height: 1.2;
+        cursor: pointer;
+
+        &:hover:not(:disabled) {
+          filter: brightness(90%);
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
       }
     }
   }
@@ -657,6 +664,8 @@ onMounted(() => {
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
+      border-radius: 6px;
+      overflow: hidden;
 
       &:hover:not(:disabled) {
         filter: brightness(90%);
