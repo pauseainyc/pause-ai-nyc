@@ -419,6 +419,7 @@ onMounted(() => {
   border-style: solid;
   border-width: 10px;
   border-image: url(/icons/doodle-border.svg) 10 10 10 10 stretch stretch;
+  background: #EEF1F5;
 }
 
 .description-area {
