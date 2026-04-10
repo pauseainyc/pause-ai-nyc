@@ -1,8 +1,14 @@
 <template>
   <div id="home">
-    <div class="home-section" id="get-involved">
-      <div class="home-section-heading">Get involved!</div>
-      <LinkTree/>
+    <div class="home-top">
+      <div class="home-section" id="get-involved">
+        <div class="home-section-heading">Get involved!</div>
+        <LinkTree/>
+      </div>
+      <div class="calendar-section">
+        <div class="home-section-heading">Upcoming events</div>
+          <iframe src="https://calendar.google.com/calendar/embed?height=200&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=AGENDA&src=MmI2YjJlNTMzMGQ1NDlhZDc0ZGJmYjIxMGM1YTI5YTY4ZWU4NWY0ZDU0ZjAwMmYwY2QyZGE2OWRiOTJlOWJkNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23b39ddb" style="border:solid 1px #777" width="550" height="200" frameborder="0" scrolling="no"></iframe>
+      </div>
     </div>
     <div class="home-section" id="learn-more">
       <div class="home-section-heading">Or, learn more about our cause</div>
@@ -33,6 +39,21 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+.home-top {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.calendar-section {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  iframe {
+    max-width: 100%;
+  }
 }
 .home-section {
   display: flex;
@@ -66,6 +87,9 @@ p {
 }
 
 @media (max-width: 768px) {
+  .home-top {
+    flex-direction: column;
+  }
   .home-section {
     .home-section-heading {
       font-size: 18px;
