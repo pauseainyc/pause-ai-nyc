@@ -35,6 +35,16 @@ npm install
 npm run dev
 ```
 
+**LAN / network testing:**
+
+To make the dev server accessible to other devices on your local network:
+
+```sh
+npm run dev -- --host
+```
+
+Then open `http://<your-local-ip>:5173` from another device on the same network. You can find your local IP with `ipconfig` (Windows) or `ifconfig` / `ip addr` (Linux/macOS).
+
 ### Type-Check, Compile and Minify for Production
 
 ```sh
