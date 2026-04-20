@@ -1,4 +1,5 @@
 import callingAllMembers from '@/data/blog/calling-all-members.json'
+import nycGrassrootsAiSafety from '@/data/blog/nyc-grassroots-ai-safety.json'
 
 export interface BlogArticle {
   slug: string
@@ -9,6 +10,7 @@ export interface BlogArticle {
 }
 
 export const blogArticles: BlogArticle[] = [
+  nycGrassrootsAiSafety,
   callingAllMembers,
 ]
 
