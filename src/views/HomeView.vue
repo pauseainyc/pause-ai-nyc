@@ -13,14 +13,15 @@
     <div class="home-section" id="learn-more">
       <div class="home-section-heading">Or, learn more about our cause</div>
       <div class="content-box">
-        <p>PauseAI NYC is a regional group of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">PauseAI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
         <p class="proposal">
-          <strong>Our proposal is simple:</strong><br>
-          Don't build powerful AI systems until we know how to keep them safe. Pause AI.
+          <strong>We have the power to create a human-centered future!</strong>
         </p>
-        <p>Surveys of thousands of AI researchers estimate a <a href=https://aiimpacts.org/wp-content/uploads/2024/01/EMBARGOED_-AI-Impacts-Survey-Release-Google-Docs.pdf target="_blank" rel="noopener noreferrer">1 in 6 chance of human extinction</a> from uncontrollable, superintelligent AI. Uncontrollable, superintelligent is exactly where we are headed if the AI industry gets its way. There are almost no guardrails for the development of frontier AI. AI companies are allowed to train models of any size, without knowledge or concern for what dangers they may pose. Some AI company CEOs have admitted there's a chance their technology destroys humanity – but they're willing to roll the dice anyway.</p>
-        <p>We advocate international cooperation to ensure that no company or country builds unsafe AI, giving us the time and the democratic oversight necessary to develop frontier AI safely. We suggest regulating the chips that are necessary to train and run the most powerful AI, pausing training runs above a threshold of computing power (<a href=https://drive.google.com/file/d/1LbQgcz_aehcnhFMupCtXqoR-BV5dX5Rv/view target="_blank" rel="noopener noreferrer">read more technical details of how this could work</a>), but there are many draft treaties and mechanism compatible with pause.</p>
-        <p>If we Pause AI, we can enjoy the benefits of the safe AI systems below the Pause threshold while we have the time to work to ensure that it's safe to build even more powerful systems that could be even more beneficial.</p>
+        <p>AI companies are racing to build a technology that could cause mass unemployment, catastrophic accidents, and even human extinction. Most people agree superhuman AI will be dangerous, and 70% of Americans want to pause or slow down AI development. We are organizing to stop it.</p>
+        <p>
+          <strong>Join us to protect the world from dangerous AI and create a future worth living in!</strong>
+        </p>
+        <img class="doodle-divider" src="/icons/doodle-hr.svg" alt="" />
+        <p>PauseAI NYC is a regional group of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">PauseAI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
       </div>
     </div>
   </div>
@@ -84,6 +85,13 @@ p {
 }
 .proposal strong {
   font-weight: 600;
+}
+
+.doodle-divider {
+  display: block;
+  width: 60%;
+  margin: 16px auto;
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

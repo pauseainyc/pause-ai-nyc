@@ -9,7 +9,7 @@
 
 <script setup>
 const links = [
-	{ text: 'RSVP to our next meeting!', url: 'https://luma.com/4k2jfibs', svg: 'calendar-days' },
+	{ text: 'RSVP to our next meeting!', url: 'https://luma.com/t7w8nfg9', svg: 'calendar-days' },
 	{ text: 'Sign our petition!', url: 'https://www.pauseai-us.org/petition/', svg: 'signature' },
 	{ text: 'Register with PauseAI US!', url: 'https://docs.google.com/forms/d/e/1FAIpQLSfatJka_oNOHB9t55OkhVKOYmqUAnqEqPdqBj9V6lrkTkZ2_g/viewform', svg: 'flag-usa' },
 ]
