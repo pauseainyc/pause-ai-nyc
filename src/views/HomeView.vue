@@ -14,11 +14,11 @@
       <div class="home-section-heading">Or, learn more about our cause</div>
       <div class="content-box">
         <p class="proposal">
-          <strong>We Have the Power to Create a Human Centered Future!</strong>
+          <strong>We have the power to create a human-centered future!</strong>
         </p>
-        <p>70% of Americans want to pause or slow down dangerous AI development, but AI companies are racing to build a technology that could cause mass unemployment, catastrophic accidents, and even human extinction. Most people agree superhuman AI is dangerous. We organize to stop it. </p>
+        <p>AI companies are racing to build a technology that could cause mass unemployment, catastrophic accidents, and even human extinction. Most people agree superhuman AI will be dangerous, and 70% of Americans want to pause or slow down AI development. We are organizing to stop it.</p>
         <p>
-          <strong>Join us to protect the world from dangerous AI and create a future worth living in.</strong>
+          <strong>Join us to protect the world from dangerous AI and create a future worth living in!</strong>
         </p>
         <img class="doodle-divider" src="/icons/doodle-hr.svg" alt="" />
         <p>PauseAI NYC is a regional group of <a href="https://www.pauseai-us.org/" target="_blank" rel="noopener noreferrer">PauseAI US</a>, a 501(c)3 organization advocating for a global pause on developing cutting-edge AI models until their safety can be guaranteed.</p>
